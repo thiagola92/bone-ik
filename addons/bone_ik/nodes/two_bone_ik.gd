@@ -1,10 +1,10 @@
 @tool
-@icon("../icons/la_ik_two_bone.svg")
-class_name LaIKTwoBone
-extends LaIK
+@icon("../icons/two_bone_ik.svg")
+class_name TwoBoneIK
+extends IKMod
 
 
-@export var bone_one: LaBone:
+@export var bone_one: BoneIK:
 	set(b):
 		_undo_modifications()
 		_stop_listen_bone(bone_one)
@@ -12,7 +12,7 @@ extends LaIK
 		_start_listen_bone(bone_one)
 		queue_redraw()
 
-@export var bone_two: LaBone:
+@export var bone_two: BoneIK:
 	set(b):
 		_undo_modifications()
 		_stop_listen_bone(bone_two)
@@ -55,7 +55,7 @@ func _draw() -> void:
 	_draw_gizmo()
 
 
-func _start_listen_bone(bone: LaBone) -> void:
+func _start_listen_bone(bone: BoneIK) -> void:
 	if not bone:
 		return
 	
@@ -81,7 +81,7 @@ func _start_listen_bone(bone: LaBone) -> void:
 	_listen_child_bone_changes(null, bone.get_child_bone())
 
 
-func _listen_child_bone_changes(previous_child_bone: LaBone, current_child_bone: LaBone) -> void:
+func _listen_child_bone_changes(previous_child_bone: BoneIK, current_child_bone: BoneIK) -> void:
 	if previous_child_bone:
 		if previous_child_bone.transform_changed.is_connected(queue_redraw):
 			previous_child_bone.transform_changed.disconnect(queue_redraw)
@@ -93,7 +93,7 @@ func _listen_child_bone_changes(previous_child_bone: LaBone, current_child_bone:
 
 # Forget bone only if it's being deleted (to avoid acessing freed object).[br]
 # Used when leaving the tree because we don't know if it's being deleted or stored for later.
-func _forget_bone(bone: LaBone) -> void:
+func _forget_bone(bone: BoneIK) -> void:
 	if not bone.is_queued_for_deletion():
 		return
 	
@@ -103,7 +103,7 @@ func _forget_bone(bone: LaBone) -> void:
 		bone_two = null
 
 
-func _stop_listen_bone(bone: LaBone) -> void:
+func _stop_listen_bone(bone: BoneIK) -> void:
 	if not bone:
 		return
 	

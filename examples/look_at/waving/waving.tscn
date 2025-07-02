@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://5l68hjbh20fw"]
 
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_bone.gd" id="1_bun3c"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="1_bun3c"]
 [ext_resource type="Texture2D" uid="uid://byc734tgume6q" path="res://examples/look_at/pointing/texture.tres" id="1_w0fee"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_look_at.gd" id="3_jh1c4"]
+[ext_resource type="Script" uid="uid://bi3kwer7hfwob" path="res://addons/bone_ik/nodes/look_at_ik.gd" id="3_jh1c4"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_fgiv2"]
 

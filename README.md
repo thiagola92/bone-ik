@@ -1,4 +1,4 @@
-# LaIK
+# BoneIK
 Inverse Kinematic addon for Godot.  
 
 Here is a [short video](https://youtu.be/42IAwWF51gE) (without sound) showing how to use 3 of the inverse kinematics.  
@@ -12,11 +12,11 @@ Main differences between Godot IK and this addon are:
 - Download latest release
 - Extract `addons` directory from ZIP
 - Move `addons` directory to your project directory
-  - If your project already have an `addons` directory, copy `addons/la_ik` to your project `addons`
+  - If your project already have an `addons` directory, copy `addons/bone_ik` to your project `addons`
 - Open Godot project
 - Go to `Project > Project Settings... > Plugins`
-  - You should be seeing LaIK plugin there, otherwise something was done wrong
-- Check `Enable` in LaIK plugin
+  - You should be seeing BoneIk plugin there, otherwise something was done wrong
+- Check `Enable` in BoneIK plugin
 - Restart Godot
 
 # Good and Bad

@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://bw3j6dm8e8emd"]
 
 [ext_resource type="Texture2D" uid="uid://dp6s8b8wco6xq" path="res://examples/two_bone/dance/body.svg" id="1_th35q"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_bone.gd" id="3_71ts3"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_two_bone.gd" id="6_3gnp6"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_look_at.gd" id="7_xp0yt"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="3_71ts3"]
+[ext_resource type="Script" uid="uid://cjfjy1lf5poi3" path="res://addons/bone_ik/nodes/two_bone_ik.gd" id="6_3gnp6"]
+[ext_resource type="Script" uid="uid://bi3kwer7hfwob" path="res://addons/bone_ik/nodes/look_at_ik.gd" id="7_xp0yt"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0osr0"]
 animation = &"DANCE"
@@ -377,9 +377,9 @@ tracks/9/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_bnp4v"]
 _data = {
-"DANCE": SubResource("Animation_x8jgj"),
-"DANCE_2": SubResource("Animation_jpcma"),
-"RESET": SubResource("Animation_hbko3")
+&"DANCE": SubResource("Animation_x8jgj"),
+&"DANCE_2": SubResource("Animation_jpcma"),
+&"RESET": SubResource("Animation_hbko3")
 }
 
 [node name="Dance" type="Node2D"]
@@ -390,31 +390,10 @@ position = Vector2(0, 200)
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_pm44y")
 anim_player = NodePath("../AnimationPlayer")
-parameters/current_length = 0.0
-parameters/current_position = 0.0
-parameters/current_delta = 0.0
-parameters/DANCE/current_length = 1.6
-parameters/DANCE/current_position = 1.6
-parameters/DANCE/current_delta = 0.0266756
-"parameters/DANCE 2/current_length" = 1.6
-"parameters/DANCE 2/current_position" = 1.6
-"parameters/DANCE 2/current_delta" = 0.0219196
-parameters/DANCE_2/current_length = 3.2
-parameters/DANCE_2/current_position = 3.2
-parameters/DANCE_2/current_delta = 0.0244133
-"parameters/DANCE_2 2/current_length" = 3.2
-"parameters/DANCE_2 2/current_position" = 3.2
-"parameters/DANCE_2 2/current_delta" = 0.152547
-parameters/End/current_length = 0.0
-parameters/End/current_position = 0.0
-parameters/End/current_delta = 0.0
-parameters/Start/current_length = 0.0
-parameters/Start/current_position = 0.0
-parameters/Start/current_delta = 0.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_bnp4v")
+&"": SubResource("AnimationLibrary_bnp4v")
 }
 
 [node name="Skeleton" type="Node2D" parent="."]

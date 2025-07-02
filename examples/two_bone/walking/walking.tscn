@@ -14,9 +14,9 @@
 [ext_resource type="Texture2D" uid="uid://ctn2fvc61u45x" path="res://examples/two_bone/walking/gbot/gBot_leg_r.png" id="12_8jb6l"]
 [ext_resource type="Texture2D" uid="uid://dk3txwjee0ldj" path="res://examples/two_bone/walking/gbot/gBot_shin_l.png" id="13_tsy7o"]
 [ext_resource type="Texture2D" uid="uid://dltygpoht7hhl" path="res://examples/two_bone/walking/gbot/gBot_shin_r.png" id="14_g8h8o"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_bone.gd" id="15_b2ktm"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_look_at.gd" id="16_216fy"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_two_bone.gd" id="17_rfi5f"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="15_b2ktm"]
+[ext_resource type="Script" uid="uid://bi3kwer7hfwob" path="res://addons/bone_ik/nodes/look_at_ik.gd" id="16_216fy"]
+[ext_resource type="Script" uid="uid://cjfjy1lf5poi3" path="res://addons/bone_ik/nodes/two_bone_ik.gd" id="17_rfi5f"]
 
 [sub_resource type="Animation" id="Animation_7f2ju"]
 length = 0.001

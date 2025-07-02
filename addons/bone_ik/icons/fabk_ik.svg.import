@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b052dnml0x472"
-path="res://.godot/imported/gBot_hip.png-9bce313e255458b8a7ebe68c6b1284a6.ctex"
+uid="uid://dhgfyxluegtvt"
+path="res://.godot/imported/fabk_ik.svg-5088ee1c98c1157997d340f3ff60884c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://examples/two_bone/walking/gbot/gBot_hip.png"
-dest_files=["res://.godot/imported/gBot_hip.png-9bce313e255458b8a7ebe68c6b1284a6.ctex"]
+source_file="res://addons/bone_ik/icons/fabk_ik.svg"
+dest_files=["res://.godot/imported/fabk_ik.svg-5088ee1c98c1157997d340f3ff60884c.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

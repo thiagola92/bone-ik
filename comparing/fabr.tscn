@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bw3aoclhumxfd"]
 
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_bone.gd" id="1_ktmni"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_fabr.gd" id="1_lcapt"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="1_ktmni"]
+[ext_resource type="Script" uid="uid://bdvekem8ayre5" path="res://addons/bone_ik/nodes/fabr_ik.gd" id="1_lcapt"]
 
 [sub_resource type="SkeletonModification2DFABRIK" id="SkeletonModification2DFABRIK_2b683"]
 target_nodepath = NodePath("../Aim/AimFABRIK2")
@@ -49,7 +49,7 @@ position = Vector2(100, 0)
 script = ExtResource("1_ktmni")
 
 [node name="Aim" type="Marker2D" parent="."]
-position = Vector2(300, 0)
+position = Vector2(333, 0)
 
 [node name="AimFABRIK" type="Marker2D" parent="Aim"]
 position = Vector2(0, -100)

@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://iu3klbvrvwc5"]
 
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_bone.gd" id="1_vjioq"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_ccd.gd" id="2_e7upd"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="1_vjioq"]
+[ext_resource type="Script" uid="uid://btk37mka80rfg" path="res://addons/bone_ik/nodes/ccd_ik.gd" id="2_e7upd"]
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_x6agb"]
 target_nodepath = NodePath("../Aim/AimCCDIK2")

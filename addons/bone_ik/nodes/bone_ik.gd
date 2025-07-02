@@ -1,12 +1,12 @@
 @tool
-@icon("../icons/LaBone.svg")
-class_name LaBone
+@icon("../icons/bone_ik.svg")
+class_name BoneIK
 extends Node2D
 
 
 signal transform_changed
 
-signal child_bone_changing(previous: LaBone, current: LaBone)
+signal child_bone_changing(previous: BoneIK, current: BoneIK)
 
 ## Show bone shapes.[br][br]
 ## Each bone can have multiple diamond shapes, this will show/hide every shape from this bone.
@@ -46,7 +46,7 @@ var _pose_cache: Transform2D = transform
 
 # The fist child bone is used to calculate length and angle,
 # so we need to notify IK nodes that it change, so they can recalculate values.
-var _child_bone: LaBone:
+var _child_bone: BoneIK:
 	set(b):
 		if b != _child_bone:
 			child_bone_changing.emit(_child_bone, b)
@@ -132,9 +132,9 @@ func restore_pose() -> void:
 
 ## Get the (n-1)º bone child or return null if doesn't found.
 ## Similar to array where first position is 0.
-func get_child_bone(n: int = 0) -> LaBone:
+func get_child_bone(n: int = 0) -> BoneIK:
 	for child in get_children():
-		if child is LaBone:
+		if child is BoneIK:
 			n -= 1
 		
 		if n < 0:
@@ -166,11 +166,11 @@ func _calculate_length_and_angle() -> void:
 
 func _start_listen_child_bones() -> void:
 	for child_bone in get_children():
-		if child_bone is LaBone:
+		if child_bone is BoneIK:
 			_start_listen_child_bone(child_bone)
 
 
-func _start_listen_child_bone(child_bone: LaBone) -> void:
+func _start_listen_child_bone(child_bone: BoneIK) -> void:
 	if not child_bone:
 		return
 	
@@ -183,7 +183,7 @@ func _start_listen_child_bone(child_bone: LaBone) -> void:
 		child_bone.transform_changed.connect(_update_shapes)
 
 
-func _stop_listen_child_bone(child_bone: LaBone) -> void:
+func _stop_listen_child_bone(child_bone: BoneIK) -> void:
 	if not child_bone:
 		return
 	
@@ -229,7 +229,7 @@ func _update_shapes_quantity() -> void:
 	# At the end you will have how many children are bones
 	# and bones quantity will be more or equal to shapes quantity.
 	for child in get_children():
-		if child is LaBone:
+		if child is BoneIK:
 			bones_quantity += 1
 			
 			if bones_quantity > _bone_shapes.size():
@@ -269,7 +269,7 @@ func _decrease_bone_shapes() -> void:
 	(_bone_outline_shapes.pop_back() as Polygon2D).queue_free()
 
 
-func _update_shape(bone_shape: Polygon2D, bone_outline_shape: Polygon2D, child_bone: LaBone) -> void:
+func _update_shape(bone_shape: Polygon2D, bone_outline_shape: Polygon2D, child_bone: BoneIK) -> void:
 	if not bone_shape:
 		return
 	

@@ -1,5 +1,6 @@
 ## Abstract base class for all 2D inverse kinematic.
-class_name LaIK
+@icon("../icons/ik_mod.svg")
+class_name IKMod
 extends Node2D
 
 
@@ -90,7 +91,7 @@ func _clamp_angle(angle: float, min_bound: float, max_bound: float, invert: bool
 
 
 func _draw_angle_constraints(
-	main_bone: LaBone,
+	main_bone: BoneIK,
 	min_bound: float,
 	max_bound: float,
 	constraint_enabled: bool,
@@ -128,7 +129,7 @@ func _draw_angle_constraints(
 		return
 	
 	var parent: Node = main_bone.get_parent()
-	var parent_bone: LaBone = parent if parent is LaBone else null
+	var parent_bone: BoneIK = parent if parent is BoneIK else null
 	
 	if localspace and parent_bone:
 		# Remove the parent angle to know how whould be in the localspace.

@@ -3,7 +3,7 @@ extends Node2D
 
 @export var skeleton: Node2D
 @export var target: Marker2D
-@export var ik: LaIKLookAt
+@export var ik: LookAtIK
 
 
 func _process(_delta: float) -> void:

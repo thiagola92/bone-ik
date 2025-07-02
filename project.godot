@@ -10,12 +10,12 @@ config_version=5
 
 [application]
 
-config/name="la-ik"
-config/features=PackedStringArray("4.3", "GL Compatibility")
+config/name="bone-ik"
+config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/la_ik/plugin.cfg")
+enabled=PackedStringArray()
 
 [rendering]
 

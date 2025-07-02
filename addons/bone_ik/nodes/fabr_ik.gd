@@ -1,11 +1,11 @@
 @tool
-@icon("../icons/la_ik_ccd.svg")
-class_name LaIKCCD
-extends LaIK
+@icon("../icons/fabk_ik.svg")
+class_name FABRIK
+extends IKMod
 
 
 ## First bone from the chain.
-@export var root_bone: LaBone:
+@export var root_bone: BoneIK:
 	set(r):
 		_undo_modifications()
 		_stop_listen_bones()
@@ -19,7 +19,7 @@ extends LaIK
 
 ## Last bone from the chain.[br][br]
 ## [b]Note[/b]: It will not be affected by IK.
-@export var tip_bone: LaBone:
+@export var tip_bone: BoneIK:
 	set(t):
 		_undo_modifications()
 		_stop_listen_bones()
@@ -33,16 +33,16 @@ extends LaIK
 
 @export var target: Node2D
 
-## Decide the order which bones from the chain will receive modifications.[br][br]
-## The default behavior is going from [member tip_bone] to [member root_bone]
-## (this is the order which parent bones are discovered).
-## When true, it will go from [member root_bone] to [member tip_bone].
-@export var forward_execution: bool:
-	set(i):
-		forward_execution = i
-		chain.reverse()
+## How many iterations do per execution.[br][br]
+## More executions will make it converge to the final position faster.[br]
+## This is capped at 10 to avoid to accidents of setting it too high.
+@export_range(1, 10, 1) var iterations: int = 10
+
+## Make [member tip_bone]'s parent use same rotation as the target.
+@export var target_rotation: bool = false
 
 # Contains data about all bones from root_bone until tip_bone (not including it).
+# Ordered from tip_bone to root_bone, because this is the order which they are discovered.
 var chain: Array[BoneData]
 
 
@@ -51,13 +51,6 @@ func _draw() -> void:
 		# The bone can be removed from tree and stored in a variable for later use.
 		if not bone_data.bone.is_inside_tree():
 			return
-		
-		if bone_data.constraint_visible:
-			_draw_angle_constraints(
-				bone_data.bone, bone_data.constraint_min_angle,
-				bone_data.constraint_max_angle, bone_data.constraint_enabled,
-				bone_data.constraint_localspace, bone_data.constraint_inverted
-			)
 
 
 func _get(property: StringName) -> Variant:
@@ -72,22 +65,8 @@ func _get(property: StringName) -> Variant:
 		match what:
 			"bone":
 				return chain[index].bone
-			"skip":
-				return chain[index].skip
-			"ignore_tip":
-				return chain[index].ignore_tip
-			"constraints" when parts[3] == "enabled":
-				return chain[index].constraint_enabled
-			"constraints" when parts[3] == "visible":
-				return chain[index].constraint_visible
-			"constraints" when parts[3] == "min_angle":
-				return chain[index].constraint_min_angle
-			"constraints" when parts[3] == "max_angle":
-				return chain[index].constraint_max_angle
-			"constraints" when parts[3] == "inverted":
-				return chain[index].constraint_inverted
-			"constraints" when parts[3] == "localspace":
-				return chain[index].constraint_localspace
+			"target_rotation":
+				return chain[index].target_rotation
 	
 	return null
 
@@ -101,59 +80,7 @@ func _get_property_list() -> Array[Dictionary]:
 			"type": TYPE_OBJECT,
 			"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_READ_ONLY,
 			"hint": PROPERTY_HINT_NODE_TYPE,
-			"hint_string": "LaBone"
-		})
-		
-		property_list.append({
-			"name": "chain/%s/skip" % i,
-			"type": TYPE_BOOL,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		
-		property_list.append({
-			"name": "chain/%s/ignore_tip" % i,
-			"type": TYPE_BOOL,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		
-		property_list.append({
-			"name": "chain/%s/constraints/enabled" % i,
-			"type": TYPE_BOOL,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		
-		property_list.append({
-			"name": "chain/%s/constraints/visible" % i,
-			"type": TYPE_BOOL,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		
-		property_list.append({
-			"name": "chain/%s/constraints/min_angle" % i,
-			"type": TYPE_FLOAT,
-			"usage": PROPERTY_USAGE_DEFAULT,
-			"hint": PROPERTY_HINT_RANGE,
-			"hint_string": "-360, 360, 0.01, radians_as_degrees"
-		})
-		
-		property_list.append({
-			"name": "chain/%s/constraints/max_angle" % i,
-			"type": TYPE_FLOAT,
-			"usage": PROPERTY_USAGE_DEFAULT,
-			"hint": PROPERTY_HINT_RANGE,
-			"hint_string": "-360, 360, 0.01, radians_as_degrees"
-		})
-		
-		property_list.append({
-			"name": "chain/%s/constraints/inverted" % i,
-			"type": TYPE_BOOL,
-			"usage": PROPERTY_USAGE_DEFAULT,
-		})
-		
-		property_list.append({
-			"name": "chain/%s/constraints/localspace" % i,
-			"type": TYPE_BOOL,
-			"usage": PROPERTY_USAGE_DEFAULT,
+			"hint_string": "BoneIK"
 		})
 	
 	return property_list
@@ -178,22 +105,8 @@ func _set(property: StringName, value: Variant) -> bool:
 		match what:
 			"bone":
 				chain[index].bone = value
-			"skip":
-				chain[index].skip = value
-			"ignore_tip":
-				chain[index].ignore_tip = value
-			"constraints" when parts[3] == "enabled":
-				chain[index].constraint_enabled = value
-			"constraints" when parts[3] == "visible":
-				chain[index].constraint_visible = value
-			"constraints" when parts[3] == "min_angle":
-				chain[index].constraint_min_angle = value
-			"constraints" when parts[3] == "max_angle":
-				chain[index].constraint_max_angle = value
-			"constraints" when parts[3] == "inverted":
-				chain[index].constraint_inverted = value
-			"constraints" when parts[3] == "localspace":
-				chain[index].constraint_localspace = value
+			"target_rotation":
+				chain[index].target_rotation = value
 		
 		# Restore pose before applying new modifications.
 		_undo_modifications()
@@ -219,16 +132,13 @@ func _update_chain() -> void:
 	var new_chain: Array[BoneData] = []
 	
 	while(parent):
-		if not parent is LaBone:
+		if not parent is BoneIK:
 			break
 		
 		new_chain.append(BoneData.new(parent))
 		
 		# Finished because found the root_bone.
 		if parent == root_bone:
-			if forward_execution:
-				new_chain.reverse()
-			
 			# Checking if is a new chain [1].
 			if new_chain.size() != chain.size():
 				chain = new_chain
@@ -249,13 +159,11 @@ func _update_chain() -> void:
 
 
 func _start_listen_bones() -> void:
-	_start_listen_bone(tip_bone)
-	
 	for bone_data in chain:
 		_start_listen_bone(bone_data.bone)
 
 
-func _start_listen_bone(bone: LaBone) -> void:
+func _start_listen_bone(bone: BoneIK) -> void:
 	if not bone:
 		return
 	
@@ -282,7 +190,7 @@ func _start_listen_bone(bone: LaBone) -> void:
 		_listen_child_bone_changes(null, bone.get_child_bone())
 
 
-func _listen_child_bone_changes(previous_child_bone: LaBone, current_child_bone: LaBone) -> void:
+func _listen_child_bone_changes(previous_child_bone: BoneIK, current_child_bone: BoneIK) -> void:
 	if previous_child_bone:
 		if previous_child_bone.transform_changed.is_connected(queue_redraw):
 			previous_child_bone.transform_changed.disconnect(queue_redraw)
@@ -293,7 +201,7 @@ func _listen_child_bone_changes(previous_child_bone: LaBone, current_child_bone:
 
 
 # Forget bone only if it's being deleted (to avoid acessing freed object).[br]
-func _forget_bone(bone: LaBone) -> void:
+func _forget_bone(bone: BoneIK) -> void:
 	# False alarme, it's being stored for later usage.
 	if not bone.is_queued_for_deletion():
 		return
@@ -309,13 +217,11 @@ func _forget_bone(bone: LaBone) -> void:
 
 
 func _stop_listen_bones() -> void:
-	_stop_listen_bone(tip_bone)
-	
 	for bone_data in chain:
 		_stop_listen_bone(bone_data.bone)
 
 
-func _stop_listen_bone(bone: LaBone) -> void:
+func _stop_listen_bone(bone: BoneIK) -> void:
 	if not bone:
 		return
 	
@@ -351,6 +257,10 @@ func _apply_modifications(_delta: float) -> void:
 	if not tip_bone or not tip_bone.is_inside_tree():
 		return
 	
+	# Unfortunately we can't take advantage of for loops to check this.
+	if not chain:
+		return
+	
 	# Changing one bone will emit a signal to update others bones autocalculated length/angle,
 	# so we need to cache everyone before changing anyone.
 	for bone_data in chain:
@@ -359,60 +269,61 @@ func _apply_modifications(_delta: float) -> void:
 		bone_data.bone.cache_pose()
 		bone_data.bone.is_pose_modified = true
 	
+	# Where root_bone started (the base of the arm).
+	var base_global_position: Vector2 = root_bone.global_position
+	
+	for i in iterations:
+		_apply_forwards_modifications()
+		_apply_backwards_modifications(base_global_position)
+
+
+# Move each bone forward to the target position.
+func _apply_forwards_modifications() -> void:
+	# The bone closest to the tip is aiming the target,
+	# others bones are aiming the following bone.
+	var target_global_position = target.global_position
+	
+	# Treating when the user wants the bone poiting same direction as the target.
+	if target_rotation:
+		var direction = Vector2(cos(target.global_rotation), sin(target.global_rotation))
+		chain[0].bone.global_position = target_global_position - direction * chain[0].bone.get_bone_length()
+	
 	for bone_data in chain:
-		var bone: LaBone = bone_data.bone
+		var bone: BoneIK = bone_data.bone
 		
-		if bone_data.skip:
+		# Look at target first.
+		bone.look_at(target_global_position)
+		
+		# Avoid calculating ratio as INF.
+		if target_global_position == bone.global_position:
 			continue
 		
-		if bone_data.ignore_tip:
-			# Put bone close to target.
-			bone.look_at(target.global_position)
-			bone.rotation -= bone.bone_angle
-		else:
-			# Put bone close to target without pushing tip away.
-			var angle_to_target: float = bone.global_position.angle_to_point(target.global_position)
-			var angle_to_tip: float = bone.global_position.angle_to_point(tip_bone.global_position)
-			var angle_diff: float = angle_to_target - angle_to_tip
-			var same_sign: bool = bone.global_scale.sign().x == bone.global_scale.sign().y
-			
-			if same_sign:
-				bone.rotate(angle_diff)
-			else:
-				bone.rotate(-angle_diff)
+		# Calculate new start position for the bone.
+		var stretch: Vector2 = target_global_position - bone.global_position
+		var ratio: float = bone.get_bone_length() / stretch.length()
+		bone.global_position = target_global_position - stretch * ratio
 		
-		# Not constraint, finished.
-		if not bone_data.constraint_enabled:
-			continue
+		# Next bone target is this bone start position.
+		target_global_position = bone.global_position
+
+
+# Move each bone backward to the base position.
+func _apply_backwards_modifications(base_global_position: Vector2) -> void:
+	for i in range(chain.size() - 1, -1, -1):
+		var bone_data: BoneData = chain[i]
+		var bone: BoneIK = bone_data.bone
 		
-		if bone_data.constraint_localspace:
-			bone.rotation = _clamp_angle(
-				bone.rotation,
-				bone_data.constraint_min_angle,
-				bone_data.constraint_max_angle,
-				bone_data.constraint_inverted
-			)
-		else:
-			bone.global_rotation = _clamp_angle(
-				bone.global_rotation,
-				bone_data.constraint_min_angle,
-				bone_data.constraint_max_angle,
-				bone_data.constraint_inverted
-			)
+		bone.global_position = base_global_position
+		
+		# Calculate next bone start position.
+		var direction := Vector2(cos(bone.global_rotation), sin(bone.global_rotation))
+		base_global_position = bone.global_position + direction * bone.get_bone_length()
 
 
 # Data used in each bone during execution.
 class BoneData extends RefCounted:
-	var bone: LaBone
-	var skip: bool = false
-	var ignore_tip = false
+	var bone: BoneIK
+	var target_rotation: bool = false
 	
-	var constraint_enabled: bool = false
-	var constraint_visible: bool = true
-	var constraint_min_angle: float = 0
-	var constraint_max_angle: float = TAU
-	var constraint_inverted: bool = false
-	var constraint_localspace: bool = true
-	
-	func _init(b: LaBone) -> void:
+	func _init(b: BoneIK) -> void:
 		bone = b

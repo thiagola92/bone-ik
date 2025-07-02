@@ -2,22 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brmnes7g07jw7"
-path="res://.godot/imported/LaBone.png-7d41ea56ec3c01d8b277d72c8ecdbee5.ctex"
+uid="uid://0qx1noq7fli4"
+path="res://.godot/imported/look_at_ik.svg-c70f6b8a8ec52d19c47642b30e7d3c3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/la_ik/icons/LaBone.png"
-dest_files=["res://.godot/imported/LaBone.png-7d41ea56ec3c01d8b277d72c8ecdbee5.ctex"]
+source_file="res://addons/bone_ik/icons/look_at_ik.svg"
+dest_files=["res://.godot/imported/look_at_ik.svg-c70f6b8a8ec52d19c47642b30e7d3c3b.ctex"]
 
 [params]
 
 compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
+compress/uastc_level=0
+compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
@@ -25,6 +27,10 @@ mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
+process/channel_remap/red=0
+process/channel_remap/green=1
+process/channel_remap/blue=2
+process/channel_remap/alpha=3
 process/fix_alpha_border=true
 process/premult_alpha=false
 process/normal_map_invert_y=false
@@ -32,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

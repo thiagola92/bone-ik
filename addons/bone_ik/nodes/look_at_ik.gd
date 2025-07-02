@@ -1,12 +1,12 @@
 @tool
-@icon("../icons/la_ik_look_at.svg")
-class_name LaIKLookAt
-extends LaIK
+@icon("../icons/look_at_ik.svg")
+class_name LookAtIK
+extends IKMod
 
 
 ## The bone that will receive modifications to look at [member target].[br][br]
-## [b]Note[/b]: It uses [member LaBone.bone_angle] to know where the bone is looking at.
-@export var bone: LaBone:
+## [b]Note[/b]: It uses [member BoneIK.bone_angle] to know where the bone is looking at.
+@export var bone: BoneIK:
 	set(b):
 		_undo_modifications()
 		_stop_listen_bone()
@@ -78,7 +78,7 @@ func _start_listen_bone() -> void:
 	_listen_child_bone_changes(null, bone.get_child_bone())
 
 
-func _listen_child_bone_changes(previous_child_bone: LaBone, current_child_bone: LaBone) -> void:
+func _listen_child_bone_changes(previous_child_bone: BoneIK, current_child_bone: BoneIK) -> void:
 	if previous_child_bone:
 		if previous_child_bone.transform_changed.is_connected(queue_redraw):
 			previous_child_bone.transform_changed.disconnect(queue_redraw)

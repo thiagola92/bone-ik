@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://bcnncwki5a1p5"]
 
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_bone.gd" id="1_mu7l1"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="1_mu7l1"]
 [ext_resource type="Texture2D" uid="uid://cvmr3yikh2nco" path="res://examples/ccd/snake/body.svg" id="2_8jh6f"]
-[ext_resource type="Script" path="res://addons/la_ik/nodes/la_ik_ccd.gd" id="3_y0puq"]
+[ext_resource type="Script" uid="uid://btk37mka80rfg" path="res://addons/bone_ik/nodes/ccd_ik.gd" id="3_y0puq"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mw22t"]
 atlas = ExtResource("2_8jh6f")
