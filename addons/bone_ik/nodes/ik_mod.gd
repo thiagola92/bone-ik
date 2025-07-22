@@ -13,15 +13,18 @@ enum ExecutionMode {
 
 ## Enable/disable inverse kinematic over bones.[br]
 ## [br]
-## When enabled, bones will [b]not[/b] store changes and will have the transform restore when disabled.[br]
+## When enabled, bones will [b]not[/b] save changes and will have the transform restore when disabled
+## or the scene is saved.[br]
 ## [br]
-## [b]Note[/b]: While you can move child bones that are not target of inverse kinematic,
-## this can bring unexpected behaviors because bones may use child bones to calculate their length and angle.
-@export var enabled: bool = true:
+## [b]Note[/b]: Moving bones that are children from bones affected by inverse kinematic
+## can bring unexpected behaviors, this happens because bones may use a child bone to
+## calculate their length and angle.
+@export var enabled: bool = false:
 	set(e):
 		enabled = e
 		
 		if not enabled:
+			update_configuration_warnings()
 			modification_disabled.emit()
 
 @export var execution_mode: ExecutionMode = ExecutionMode.PROCESS:
@@ -49,6 +52,14 @@ func _physics_process(delta: float) -> void:
 	
 	# Lock transform, this way we can draw lines/arcs without the user interfere.
 	global_transform = Transform2D.IDENTITY
+
+
+func _get_configuration_warnings() -> PackedStringArray:
+	if not enabled:
+		return ["""Inverse Kinematic is disabled.
+		When disabled, modifications to bone transformers are saved. Remember to disable when modificaitons are needed."""]
+	
+	return []
 
 
 ## Virtual method.
