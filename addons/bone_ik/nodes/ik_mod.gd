@@ -22,9 +22,9 @@ enum ExecutionMode {
 @export var enabled: bool = false:
 	set(e):
 		enabled = e
+		update_configuration_warnings()
 		
 		if not enabled:
-			update_configuration_warnings()
 			modification_disabled.emit()
 
 @export var execution_mode: ExecutionMode = ExecutionMode.PROCESS:
