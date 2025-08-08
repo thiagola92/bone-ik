@@ -144,7 +144,7 @@ func get_child_bone(n: int = 0) -> BoneIK:
 
 
 func _calculate_length_and_angle() -> void:
-	if not autocalculate_length_and_angle:
+	if not autocalculate_length_and_angle or _bone_shapes.size() == 0:
 		return
 	
 	# Calculating while modifying can cause unexpected behaviors.
