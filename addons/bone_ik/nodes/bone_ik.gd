@@ -107,13 +107,13 @@ func _get_property_list() -> Array[Dictionary]:
 
 
 func get_bone_angle() -> float:
-	if autocalculate_length_and_angle:
+	if _should_autocalculate_length_and_angle():
 		return _calculated_bone_angle
 	return bone_angle
 
 
 func get_bone_length() -> float:
-	if autocalculate_length_and_angle:
+	if _should_autocalculate_length_and_angle():
 		return _calculated_bone_length
 	return bone_length
 
@@ -144,8 +144,12 @@ func get_child_bone(n: int = 0) -> BoneIK:
 	return null
 
 
+func _should_autocalculate_length_and_angle() -> bool:
+	return autocalculate_length_and_angle and _bone_shapes.size() > 0
+
+
 func _calculate_length_and_angle() -> void:
-	if not autocalculate_length_and_angle or _bone_shapes.size() == 0:
+	if not _should_autocalculate_length_and_angle():
 		return
 	
 	# Calculating while modifying can cause unexpected behaviors.
@@ -217,8 +221,8 @@ func _update_shapes() -> void:
 		_update_shape(_bone_shapes[i], _bone_outline_shapes[i], get_child_bone(i))
 		_update_shape_color(_bone_shapes[i], _bone_outline_shapes[i])
 	
-	_bone_shape.visible = not autocalculate_length_and_angle or _bone_shapes.size() == 0
-	_bone_outline_shape.visible = not autocalculate_length_and_angle or _bone_shapes.size() == 0
+	_bone_shape.visible = not _should_autocalculate_length_and_angle()
+	_bone_outline_shape.visible = not _should_autocalculate_length_and_angle()
 	
 	_update_shape(_bone_shape, _bone_outline_shape, null)
 	_update_shape_color(_bone_shape, _bone_outline_shape)
