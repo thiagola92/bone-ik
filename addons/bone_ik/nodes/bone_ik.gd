@@ -15,8 +15,9 @@ signal child_bone_changing(previous: BoneIK, current: BoneIK)
 		show_bone = s
 		_update_shapes()
 
-## If [code]true[/code], it will attempt to use the first child bone to discover length and angle.[br][br]
-## In case no child bone exist, [member bone_length] and [member bone_angle] will be used.
+## If [code]true[/code], it will attempt to use the first child bone to discover length and angle.[br]
+## In case no child bone exist or it's [code]false[/code], [member bone_length] and [member bone_angle]
+## will be used.
 @export var autocalculate_length_and_angle: bool = true:
 	set(a):
 		autocalculate_length_and_angle = a
