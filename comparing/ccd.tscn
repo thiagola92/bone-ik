@@ -62,6 +62,7 @@ chain/2/constraints/min_angle = 0.0
 chain/2/constraints/max_angle = 6.28319
 chain/2/constraints/inverted = false
 chain/2/constraints/localspace = true
+enabled = true
 
 [node name="One" type="Node2D" parent="."]
 position = Vector2(0, -100)

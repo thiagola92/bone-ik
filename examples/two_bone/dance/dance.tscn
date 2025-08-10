@@ -5,51 +5,6 @@
 [ext_resource type="Script" uid="uid://cjfjy1lf5poi3" path="res://addons/bone_ik/nodes/two_bone_ik.gd" id="6_3gnp6"]
 [ext_resource type="Script" uid="uid://bi3kwer7hfwob" path="res://addons/bone_ik/nodes/look_at_ik.gd" id="7_xp0yt"]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0osr0"]
-animation = &"DANCE"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nv6lx"]
-animation = &"DANCE"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3txy"]
-animation = &"DANCE_2"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kvq06"]
-animation = &"DANCE_2"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iptdw"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yuy6x"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5xfnx"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mxvqd"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ua7le"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pm44y"]
-states/DANCE/node = SubResource("AnimationNodeAnimation_nv6lx")
-states/DANCE/position = Vector2(223, 99)
-"states/DANCE 2/node" = SubResource("AnimationNodeAnimation_0osr0")
-"states/DANCE 2/position" = Vector2(347, 99)
-states/DANCE_2/node = SubResource("AnimationNodeAnimation_kvq06")
-states/DANCE_2/position = Vector2(488, 99)
-"states/DANCE_2 2/node" = SubResource("AnimationNodeAnimation_q3txy")
-"states/DANCE_2 2/position" = Vector2(634, 99)
-states/End/position = Vector2(779, 99)
-states/Start/position = Vector2(90, 100)
-transitions = ["Start", "DANCE", SubResource("AnimationNodeStateMachineTransition_iptdw"), "DANCE", "DANCE 2", SubResource("AnimationNodeStateMachineTransition_yuy6x"), "DANCE 2", "DANCE_2", SubResource("AnimationNodeStateMachineTransition_5xfnx"), "DANCE_2", "DANCE_2 2", SubResource("AnimationNodeStateMachineTransition_mxvqd"), "DANCE_2 2", "End", SubResource("AnimationNodeStateMachineTransition_ua7le")]
-
 [sub_resource type="Animation" id="Animation_x8jgj"]
 resource_name = "DANCE"
 length = 1.6
@@ -382,12 +337,60 @@ _data = {
 &"RESET": SubResource("Animation_hbko3")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0osr0"]
+animation = &"DANCE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nv6lx"]
+animation = &"DANCE"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q3txy"]
+animation = &"DANCE_2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kvq06"]
+animation = &"DANCE_2"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_iptdw"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yuy6x"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5xfnx"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mxvqd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ua7le"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_pm44y"]
+states/DANCE/node = SubResource("AnimationNodeAnimation_nv6lx")
+states/DANCE/position = Vector2(223, 99)
+"states/DANCE 2/node" = SubResource("AnimationNodeAnimation_0osr0")
+"states/DANCE 2/position" = Vector2(347, 99)
+states/DANCE_2/node = SubResource("AnimationNodeAnimation_kvq06")
+states/DANCE_2/position = Vector2(488, 99)
+"states/DANCE_2 2/node" = SubResource("AnimationNodeAnimation_q3txy")
+"states/DANCE_2 2/position" = Vector2(634, 99)
+states/End/position = Vector2(779, 99)
+states/Start/position = Vector2(90, 100)
+transitions = ["Start", "DANCE", SubResource("AnimationNodeStateMachineTransition_iptdw"), "DANCE", "DANCE 2", SubResource("AnimationNodeStateMachineTransition_yuy6x"), "DANCE 2", "DANCE_2", SubResource("AnimationNodeStateMachineTransition_5xfnx"), "DANCE_2", "DANCE_2 2", SubResource("AnimationNodeStateMachineTransition_mxvqd"), "DANCE_2 2", "End", SubResource("AnimationNodeStateMachineTransition_ua7le")]
+
 [node name="Dance" type="Node2D"]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, 200)
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_bnp4v")
+}
 tree_root = SubResource("AnimationNodeStateMachine_pm44y")
 anim_player = NodePath("../AnimationPlayer")
 
@@ -550,31 +553,37 @@ bone_one = NodePath("../../Skeleton/Body/ArmL")
 bone_two = NodePath("../../Skeleton/Body/ArmL/ArmL2")
 target = NodePath("../../Targets/HandL")
 flip_bend = true
+enabled = true
 
 [node name="ArmR" type="Node2D" parent="IKs" node_paths=PackedStringArray("bone_one", "bone_two", "target")]
 script = ExtResource("6_3gnp6")
 bone_one = NodePath("../../Skeleton/Body/ArmR")
 bone_two = NodePath("../../Skeleton/Body/ArmR/ArmR2")
 target = NodePath("../../Targets/HandR")
+enabled = true
 
 [node name="LegL" type="Node2D" parent="IKs" node_paths=PackedStringArray("bone_one", "bone_two", "target")]
 script = ExtResource("6_3gnp6")
 bone_one = NodePath("../../Skeleton/Body/LegL")
 bone_two = NodePath("../../Skeleton/Body/LegL/LegL2")
 target = NodePath("../../Targets/FootL")
+enabled = true
 
 [node name="LegR" type="Node2D" parent="IKs" node_paths=PackedStringArray("bone_one", "bone_two", "target")]
 script = ExtResource("6_3gnp6")
 bone_one = NodePath("../../Skeleton/Body/LegR")
 bone_two = NodePath("../../Skeleton/Body/LegR/LegR2")
 target = NodePath("../../Targets/FootR")
+enabled = true
 
 [node name="Head" type="Node2D" parent="IKs" node_paths=PackedStringArray("bone", "target")]
 script = ExtResource("7_xp0yt")
 bone = NodePath("../../Skeleton/Body/Neck")
 target = NodePath("../../Targets/Head")
+enabled = true
 
 [node name="Body" type="Node2D" parent="IKs" node_paths=PackedStringArray("bone", "target")]
 script = ExtResource("7_xp0yt")
 bone = NodePath("../../Skeleton/Body")
 target = NodePath("../../Targets/Body")
+enabled = true

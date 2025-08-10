@@ -19,6 +19,7 @@ modifications/0 = SubResource("SkeletonModification2DLookAt_jcx74")
 script = ExtResource("2_y6n5u")
 bone = NodePath("../One")
 target = NodePath("../Aim/AimLook")
+enabled = true
 
 [node name="One" type="Node2D" parent="."]
 position = Vector2(0, -100)

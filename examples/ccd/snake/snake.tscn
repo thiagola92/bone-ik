@@ -21,9 +21,11 @@ atlas = ExtResource("2_8jh6f")
 region = Rect2(93, 194, 35, 35)
 
 [node name="Snake" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
 position = Vector2(115, 281)
 
-[node name="LaIKCCD" type="Node2D" parent="." node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone", "chain/3/bone")]
+[node name="LaIKCCD" type="Node2D" parent="Node2D" node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone", "chain/3/bone")]
 position = Vector2(-115, -281)
 script = ExtResource("3_y0puq")
 root_bone = NodePath("../LaBone")
@@ -65,48 +67,49 @@ chain/3/constraints/min_angle = -0.261799
 chain/3/constraints/max_angle = 0.261799
 chain/3/constraints/inverted = true
 chain/3/constraints/localspace = true
+enabled = true
 
-[node name="LaBone" type="Node2D" parent="."]
+[node name="LaBone" type="Node2D" parent="Node2D"]
 position = Vector2(288, 0)
 script = ExtResource("1_mu7l1")
 
-[node name="LaBone" type="Node2D" parent="LaBone"]
+[node name="LaBone" type="Node2D" parent="Node2D/LaBone"]
 position = Vector2(100, 0)
 script = ExtResource("1_mu7l1")
 
-[node name="LaBone" type="Node2D" parent="LaBone/LaBone"]
+[node name="LaBone" type="Node2D" parent="Node2D/LaBone/LaBone"]
 position = Vector2(100, 0)
 script = ExtResource("1_mu7l1")
 
-[node name="LaBone" type="Node2D" parent="LaBone/LaBone/LaBone"]
+[node name="LaBone" type="Node2D" parent="Node2D/LaBone/LaBone/LaBone"]
 position = Vector2(100, 0)
 script = ExtResource("1_mu7l1")
 
-[node name="LaBone" type="Node2D" parent="LaBone/LaBone/LaBone/LaBone"]
+[node name="LaBone" type="Node2D" parent="Node2D/LaBone/LaBone/LaBone/LaBone"]
 position = Vector2(100, 0)
 script = ExtResource("1_mu7l1")
 
-[node name="Head" type="Sprite2D" parent="LaBone/LaBone/LaBone/LaBone/LaBone"]
+[node name="Head" type="Sprite2D" parent="Node2D/LaBone/LaBone/LaBone/LaBone/LaBone"]
 texture = SubResource("AtlasTexture_mw22t")
 offset = Vector2(32, 0)
 
-[node name="Body" type="Sprite2D" parent="LaBone/LaBone/LaBone/LaBone"]
+[node name="Body" type="Sprite2D" parent="Node2D/LaBone/LaBone/LaBone/LaBone"]
 texture = SubResource("AtlasTexture_0e8eh")
 offset = Vector2(64, 0)
 
-[node name="Body" type="Sprite2D" parent="LaBone/LaBone/LaBone"]
+[node name="Body" type="Sprite2D" parent="Node2D/LaBone/LaBone/LaBone"]
 texture = SubResource("AtlasTexture_0e8eh")
 offset = Vector2(64, 0)
 
-[node name="Body" type="Sprite2D" parent="LaBone/LaBone"]
+[node name="Body" type="Sprite2D" parent="Node2D/LaBone/LaBone"]
 texture = SubResource("AtlasTexture_0e8eh")
 offset = Vector2(64, 0)
 
-[node name="Tail" type="Sprite2D" parent="LaBone"]
+[node name="Tail" type="Sprite2D" parent="Node2D/LaBone"]
 texture = SubResource("AtlasTexture_3obgd")
 offset = Vector2(32, 0)
 flip_h = true
 
-[node name="Target" type="Sprite2D" parent="."]
+[node name="Target" type="Sprite2D" parent="Node2D"]
 position = Vector2(845, 0)
 texture = SubResource("AtlasTexture_wccmh")

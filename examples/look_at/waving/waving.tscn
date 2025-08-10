@@ -64,8 +64,8 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mp8l0"]
 _data = {
-"RESET": SubResource("Animation_o526a"),
-"WAVE": SubResource("Animation_umg6b")
+&"RESET": SubResource("Animation_o526a"),
+&"WAVE": SubResource("Animation_umg6b")
 }
 
 [node name="Waving" type="Node2D"]
@@ -114,9 +114,10 @@ position = Vector2(578, 54)
 script = ExtResource("3_jh1c4")
 bone = NodePath("../Skeleton/LaBone")
 target = NodePath("../Marker2D")
+enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_mp8l0")
+&"": SubResource("AnimationLibrary_mp8l0")
 }
 autoplay = "WAVE"

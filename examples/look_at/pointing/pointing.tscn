@@ -59,18 +59,20 @@ position = Vector2(377, 0)
 script = ExtResource("4_lgwqs")
 bone = NodePath("../Skeleton/Bone")
 target = NodePath("../Target")
+enabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="FlipButton" type="Button" parent="CanvasLayer"]
+anchors_preset = -1
 offset_right = 65.0
 offset_bottom = 31.0
 text = "Flip me"
 
 [node name="NoContraintButton" type="Button" parent="CanvasLayer"]
-anchors_preset = 5
+anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -57.0
@@ -80,7 +82,7 @@ grow_horizontal = 2
 text = "No constraint"
 
 [node name="OnlyPointForwardButton" type="Button" parent="CanvasLayer"]
-anchors_preset = 4
+anchors_preset = -1
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_top = -15.5
@@ -90,7 +92,7 @@ grow_vertical = 2
 text = "Only point forward"
 
 [node name="MoveButton" type="Button" parent="CanvasLayer"]
-anchors_preset = 2
+anchors_preset = -1
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -31.0

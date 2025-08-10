@@ -31,6 +31,7 @@ target = NodePath("../Aim/AimFABRIK")
 chain/0/bone = NodePath("../One/Two/Three")
 chain/1/bone = NodePath("../One/Two")
 chain/2/bone = NodePath("../One")
+enabled = true
 
 [node name="One" type="Node2D" parent="."]
 position = Vector2(0, -100)

@@ -23,6 +23,7 @@ script = ExtResource("2_jw1vy")
 bone_one = NodePath("../One")
 bone_two = NodePath("../One/Two")
 target = NodePath("../Aim/AimTwo")
+enabled = true
 
 [node name="One" type="Node2D" parent="."]
 position = Vector2(0, -100)
