@@ -76,8 +76,10 @@ func _ready() -> void:
 	_bone_shape = _create_bone_shape()
 	_bone_outline_shape = _create_bone_outline_shape()
 	
-	add_child(_bone_shape)
-	add_child(_bone_outline_shape)
+	# Add as internal node, so they are NOT duplicate when user
+	# paste them throught the editor.
+	add_child(_bone_shape, false, Node.INTERNAL_MODE_BACK)
+	add_child(_bone_outline_shape, false, Node.INTERNAL_MODE_BACK)
 
 
 func _notification(what: int) -> void:
@@ -252,10 +254,14 @@ func _update_shapes_quantity() -> void:
 func _increase_bone_shapes() -> void:
 	var bone_shape: Polygon2D = _create_bone_shape()
 	var bone_outline_shape: Polygon2D = _create_bone_outline_shape()
+	
 	_bone_shapes.append(bone_shape)
 	_bone_outline_shapes.append(bone_outline_shape)
-	add_child(bone_shape)
-	add_child(bone_outline_shape)
+	
+	# Add as internal node, so they are NOT duplicate when user
+	# paste them throught the editor.
+	add_child(bone_shape, false, Node.INTERNAL_MODE_BACK)
+	add_child(bone_outline_shape, false, Node.INTERNAL_MODE_BACK)
 
 
 func _create_bone_shape() -> Polygon2D:
