@@ -74,7 +74,7 @@ func _start_listen_bone() -> void:
 		bone.tree_exiting.connect(_forget_bone)
 	
 	# Update contraint in case child bone move.
-	bone.child_bone_changing.connect(_listen_child_bone_changes)
+	bone.child_bone_replaced.connect(_listen_child_bone_changes)
 	_listen_child_bone_changes(null, bone.get_child_bone())
 
 
@@ -111,8 +111,8 @@ func _stop_listen_bone() -> void:
 	if bone.tree_exiting.is_connected(_forget_bone):
 		bone.tree_exiting.disconnect(_forget_bone)
 	
-	if bone.child_bone_changing.is_connected(_listen_child_bone_changes):
-		bone.child_bone_changing.disconnect(_listen_child_bone_changes)
+	if bone.child_bone_replaced.is_connected(_listen_child_bone_changes):
+		bone.child_bone_replaced.disconnect(_listen_child_bone_changes)
 
 
 func _undo_modifications() -> void:

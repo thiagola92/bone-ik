@@ -4,9 +4,13 @@ class_name BoneIK
 extends Node2D
 
 
+## Emitted when this bone transform change.[br][br]
+## [b]Note:[/b] This signal is for internal usage.
 signal transform_changed
 
-signal child_bone_changing(previous: BoneIK, current: BoneIK)
+## Emitted when the first child bone is replaced or removed.[br][br]
+## [b]Note:[/b] This signal is for internal usage.
+signal child_bone_replaced(previous: BoneIK, current: BoneIK)
 
 ## Show bone shapes.[br][br]
 ## Each bone can have multiple diamond shapes, this will show/hide every shape from this bone.
@@ -46,11 +50,11 @@ var is_pose_modified: bool = false:
 var _pose_cache: Transform2D = transform
 
 # The fist child bone is used to calculate length and angle,
-# so we need to notify IK nodes that it change, so they can recalculate values.
+# so we need to notify IK nodes that it changed, so they can recalculate values.
 var _child_bone: BoneIK:
 	set(b):
 		if b != _child_bone:
-			child_bone_changing.emit(_child_bone, b)
+			child_bone_replaced.emit(_child_bone, b)
 			_child_bone = b
 
 var _calculated_bone_length: float = 16
