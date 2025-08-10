@@ -80,6 +80,15 @@ func _ready() -> void:
 	# paste them throught the editor.
 	add_child(_bone_shape, false, Node.INTERNAL_MODE_BACK)
 	add_child(_bone_outline_shape, false, Node.INTERNAL_MODE_BACK)
+	
+	if EditorInterface.has_method("get_selection"):
+		EditorInterface.get_selection().selection_changed.connect(_update_shapes)
+
+
+func _exit_tree() -> void:
+	if EditorInterface.has_method("get_selection"):
+		if EditorInterface.get_selection().selection_changed.is_connected(_update_shapes):
+			EditorInterface.get_selection().selection_changed.disconnect(_update_shapes)
 
 
 func _notification(what: int) -> void:
