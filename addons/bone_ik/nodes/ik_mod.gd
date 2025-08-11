@@ -5,8 +5,6 @@ class_name IKMod
 extends Node2D
 
 
-signal modification_disabled
-
 enum ExecutionMode {
 	PROCESS,
 	PHYISIC_PROCESS,
@@ -26,7 +24,7 @@ enum ExecutionMode {
 		update_configuration_warnings()
 		
 		if not enabled:
-			modification_disabled.emit()
+			_undo_modifications()
 
 @export var execution_mode: ExecutionMode = ExecutionMode.PROCESS:
 	set(e):
@@ -36,7 +34,6 @@ enum ExecutionMode {
 
 
 func _ready() -> void:
-	modification_disabled.connect(_undo_modifications)
 	tree_exiting.connect(_undo_modifications)
 	execution_mode = execution_mode
 

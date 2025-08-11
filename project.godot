@@ -15,7 +15,7 @@ config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [editor_plugins]
 
-enabled=PackedStringArray()
+enabled=PackedStringArray("res://addons/bone_ik/plugin.cfg")
 
 [rendering]
 
