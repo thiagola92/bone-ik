@@ -1,4 +1,5 @@
 ## Abstract base class for all 2D inverse kinematic.
+@abstract
 @icon("../icons/ik_mod.svg")
 class_name IKMod
 extends Node2D
@@ -62,14 +63,12 @@ func _get_configuration_warnings() -> PackedStringArray:
 	return []
 
 
-## Virtual method.
-func _undo_modifications() -> void:
-	pass
+@abstract
+func _undo_modifications() -> void
 
 
-## Virtual method.
-func _apply_modifications(_delta: float) -> void:
-	pass
+@abstract
+func _apply_modifications(_delta: float) -> void
 
 
 func _clamp_angle(angle: float, min_bound: float, max_bound: float, invert: bool) -> float:
