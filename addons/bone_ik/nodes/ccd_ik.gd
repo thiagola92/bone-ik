@@ -31,6 +31,7 @@ extends IKMod
 		notify_property_list_changed.call_deferred()
 		queue_redraw.call_deferred()
 
+## Node which will bend all bones from [member root_bone] until [member tip_bone] when geting close to them.
 @export var target: Node2D
 
 ## Decide the order which bones from the chain will receive modifications.[br][br]

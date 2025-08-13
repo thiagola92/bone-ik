@@ -4,6 +4,7 @@ class_name TwoBoneIK
 extends IKMod
 
 
+## The parent of [member bone_two].
 @export var bone_one: BoneIK:
 	set(b):
 		_undo_modifications()
@@ -12,6 +13,7 @@ extends IKMod
 		_start_listen_bone(bone_one)
 		queue_redraw()
 
+## A direct child of [member bone_one].
 @export var bone_two: BoneIK:
 	set(b):
 		_undo_modifications()
@@ -20,6 +22,7 @@ extends IKMod
 		_start_listen_bone(bone_two)
 		queue_redraw()
 
+## Node which will bend [member bone_one] and [member bone_two] when geting close to them.
 @export var target: Node2D
 
 ## Flip the direction which the bone bend to.

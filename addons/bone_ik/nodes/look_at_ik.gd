@@ -14,7 +14,7 @@ extends IKMod
 		_start_listen_bone()
 		queue_redraw()
 
-## The node which [member bone] will look at.
+## Node which [member bone] will look at.
 @export var target: Node2D
 
 @export_range(-360, 360, 0.01, "radians_as_degrees") var additional_rotation: float = 0
