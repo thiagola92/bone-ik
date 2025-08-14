@@ -31,12 +31,14 @@ extends IKMod
 		notify_property_list_changed.call_deferred()
 		queue_redraw.call_deferred()
 
-## Node which will bend all bones from [member root_bone] until [member tip_bone] when geting close to them.
+## Node which will bend all bones from [member root_bone] until [member tip_bone]
+## when geting close to them.
 @export var target: Node2D
 
-## How many iterations do per execution.[br][br]
-## More executions will make it converge to the final position faster.[br]
-## This is capped at 10 to avoid to accidents of setting it too high.
+## How many iterations do per execution.[br]
+## More executions will make it converge to the final position faster.[br][br]
+## [b]Note:[/b] Decreasing may cause user to see the bones before the final position.[br]
+## [b]Note:[/b] This is capped at 10 to avoid to accidents of setting it too high.
 @export_range(1, 10, 1) var iterations: int = 10
 
 ## Make [member tip_bone]'s parent use same rotation as the target.
@@ -66,8 +68,6 @@ func _get(property: StringName) -> Variant:
 		match what:
 			"bone":
 				return chain[index].bone
-			"target_rotation":
-				return chain[index].target_rotation
 	
 	return null
 
@@ -76,13 +76,15 @@ func _get_property_list() -> Array[Dictionary]:
 	var property_list: Array[Dictionary] = []
 	
 	for i in chain.size():
-		property_list.append({
-			"name": "chain/%s/bone" % i,
-			"type": TYPE_OBJECT,
-			"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_READ_ONLY,
-			"hint": PROPERTY_HINT_NODE_TYPE,
-			"hint_string": "BoneIK"
-		})
+		property_list.append_array([
+			{
+				"name": "chain/%s/bone" % i,
+				"type": TYPE_OBJECT,
+				"usage": PROPERTY_USAGE_DEFAULT | PROPERTY_USAGE_READ_ONLY,
+				"hint": PROPERTY_HINT_NODE_TYPE,
+				"hint_string": "BoneIK"
+			}
+		])
 	
 	return property_list
 
@@ -106,8 +108,6 @@ func _set(property: StringName, value: Variant) -> bool:
 		match what:
 			"bone":
 				chain[index].bone = value
-			"target_rotation":
-				chain[index].target_rotation = value
 		
 		# Restore pose before applying new modifications.
 		_undo_modifications()
@@ -255,20 +255,30 @@ func _apply_modifications(_delta: float) -> void:
 	if not target or not target.is_inside_tree():
 		return
 	
+	if not chain:
+		return
+	
+	# No need to check if each bone is inside tree or have being freed
+	# because this would mean the same for the tip_bone.
 	if not tip_bone or not tip_bone.is_inside_tree():
 		return
 	
-	# Unfortunately we can't take advantage of for loops to check this.
-	if not chain:
-		return
+	var chain_length: float = 0
 	
 	# Changing one bone will emit a signal to update others bones autocalculated length/angle,
 	# so we need to cache everyone before changing anyone.
 	for bone_data in chain:
-		# No need to check if each bone is inside tree or exist
-		# because this would mean the same for the tip_bone.
 		bone_data.bone.cache_pose()
 		bone_data.bone.is_pose_modified = true
+		
+		chain_length += bone_data.bone.get_bone_length()
+	
+	var target_distance: float = root_bone.global_position.distance_to(target.global_position)
+	var out_of_range: bool = target_distance > chain_length
+	
+	# Easiest case, target is out of range.
+	if out_of_range:
+		return _apply_out_of_range_modifications()
 	
 	# Where root_bone started (the base of the arm).
 	var base_global_position: Vector2 = root_bone.global_position
@@ -276,6 +286,12 @@ func _apply_modifications(_delta: float) -> void:
 	for i in iterations:
 		_apply_forwards_modifications()
 		_apply_backwards_modifications(base_global_position)
+
+
+func _apply_out_of_range_modifications() -> void:
+	# Doing reversed because the chain goes from tip_bone to root_bone.
+	for i in range(chain.size() - 1, -1, -1):
+		chain[i].bone.look_at(target.global_position)
 
 
 # Move each bone forward to the target position.
@@ -324,7 +340,6 @@ func _apply_backwards_modifications(base_global_position: Vector2) -> void:
 # Data used in each bone during execution.
 class BoneData extends RefCounted:
 	var bone: BoneIK
-	var target_rotation: bool = false
 	
 	func _init(b: BoneIK) -> void:
 		bone = b
