@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cvmr3yikh2nco"
-path="res://.godot/imported/body.svg-c794e311039c53b335cfd285a16ce04e.ctex"
+uid="uid://kuexw1nlukuh"
+path="res://.godot/imported/head.svg-9e9a92b4732441add8c2fc50413355fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://examples/ccd/snake/body.svg"
-dest_files=["res://.godot/imported/body.svg-c794e311039c53b335cfd285a16ce04e.ctex"]
+source_file="res://examples/look_at/head_look_at/head.svg"
+dest_files=["res://.godot/imported/head.svg-9e9a92b4732441add8c2fc50413355fa.ctex"]
 
 [params]
 

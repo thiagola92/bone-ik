@@ -37,6 +37,7 @@ extends IKMod
 
 @export var constraint_inverted: bool = false
 
+## If [code]true[/code], the angle will be relative to the parent [Node].
 @export var constraint_localspace: bool = true
 
 

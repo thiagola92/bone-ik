@@ -136,13 +136,12 @@ func _draw_angle_constraints(
 		return
 	
 	var parent: Node = main_bone.get_parent()
-	var parent_bone: BoneIK = parent if parent is BoneIK else null
 	
-	if localspace and parent_bone:
-		# Remove the parent angle to know how whould be in the localspace.
+	if localspace and parent:
+		# Include the parent global angle to know how would be locally.
 		draw_set_transform(
 			main_bone.global_position,
-			parent_bone.global_rotation,
+			parent.global_rotation,
 			main_bone.global_scale
 		)
 	else:

@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://dxkhj8andvbm7"]
+
+[ext_resource type="Texture2D" uid="uid://kuexw1nlukuh" path="res://examples/look_at/head_look_at/head.svg" id="1_5eta3"]
+[ext_resource type="Script" uid="uid://bbvhlkjy6soit" path="res://examples/look_at/head_look_at/head_look_at.gd" id="1_hvp42"]
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="2_v2iw4"]
+[ext_resource type="Script" uid="uid://bi3kwer7hfwob" path="res://addons/bone_ik/nodes/look_at_ik.gd" id="3_6qeug"]
+
+[node name="HeadLookAt" type="Node2D"]
+script = ExtResource("1_hvp42")
+
+[node name="BoneIK" type="Node2D" parent="."]
+script = ExtResource("2_v2iw4")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="Head" type="Sprite2D" parent="BoneIK"]
+texture = ExtResource("1_5eta3")
+
+[node name="Target" type="Marker2D" parent="."]
+position = Vector2(448, 0)
+
+[node name="LookAtIK" type="Node2D" parent="." node_paths=PackedStringArray("bone", "target")]
+script = ExtResource("3_6qeug")
+bone = NodePath("../BoneIK")
+target = NodePath("../Target")
+constraint_enabled = true
+constraint_min_angle = 1.0471975511965976
+constraint_max_angle = 5.235987755982989
+constraint_inverted = true
+enabled = true
+metadata/_custom_type_script = "uid://bi3kwer7hfwob"

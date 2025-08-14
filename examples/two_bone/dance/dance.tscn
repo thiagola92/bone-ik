@@ -243,7 +243,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-30, 432)]
+"values": [Vector2(32, 440)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -255,7 +255,7 @@ tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(30, 432)]
+"values": [Vector2(-32, 432)]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -381,6 +381,7 @@ states/DANCE_2/position = Vector2(488, 99)
 states/End/position = Vector2(779, 99)
 states/Start/position = Vector2(90, 100)
 transitions = ["Start", "DANCE", SubResource("AnimationNodeStateMachineTransition_iptdw"), "DANCE", "DANCE 2", SubResource("AnimationNodeStateMachineTransition_yuy6x"), "DANCE 2", "DANCE_2", SubResource("AnimationNodeStateMachineTransition_5xfnx"), "DANCE_2", "DANCE_2 2", SubResource("AnimationNodeStateMachineTransition_mxvqd"), "DANCE_2 2", "End", SubResource("AnimationNodeStateMachineTransition_ua7le")]
+graph_offset = Vector2(-36, 61)
 
 [node name="Dance" type="Node2D"]
 
@@ -536,10 +537,10 @@ position = Vector2(-185, 70)
 position = Vector2(187, 70)
 
 [node name="FootL" type="Node2D" parent="Targets"]
-position = Vector2(-30, 432)
+position = Vector2(32, 440)
 
 [node name="FootR" type="Node2D" parent="Targets"]
-position = Vector2(30, 432)
+position = Vector2(-32, 432)
 
 [node name="Head" type="Node2D" parent="Targets"]
 
