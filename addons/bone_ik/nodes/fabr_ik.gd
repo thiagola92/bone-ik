@@ -280,6 +280,13 @@ func _apply_modifications(_delta: float) -> void:
 	if out_of_range:
 		return _apply_out_of_range_modifications()
 	
+	# When the user wants the bone poiting same direction as the target,
+	# we move the bone to behind the target (by the distance of the last bone length).
+	# Rotation will be done at the _apply_forwards_modifications() so we don't need to point right now.
+	if target_rotation:
+		var direction = Vector2(cos(target.global_rotation), sin(target.global_rotation))
+		chain[0].bone.global_position = target.global_position - direction * chain[0].bone.get_bone_length()
+	
 	# Where root_bone started (the base of the arm).
 	var base_global_position: Vector2 = root_bone.global_position
 	
@@ -290,6 +297,7 @@ func _apply_modifications(_delta: float) -> void:
 
 func _apply_out_of_range_modifications() -> void:
 	# Doing reversed because the chain goes from tip_bone to root_bone.
+	# Remember: tip_bone is not in the chain.
 	for i in range(chain.size() - 1, -1, -1):
 		chain[i].bone.look_at(target.global_position)
 
@@ -299,11 +307,6 @@ func _apply_forwards_modifications() -> void:
 	# The bone closest to the tip is aiming the target,
 	# others bones are aiming the following bone.
 	var target_global_position = target.global_position
-	
-	# Treating when the user wants the bone poiting same direction as the target.
-	if target_rotation:
-		var direction = Vector2(cos(target.global_rotation), sin(target.global_rotation))
-		chain[0].bone.global_position = target_global_position - direction * chain[0].bone.get_bone_length()
 	
 	for bone_data in chain:
 		var bone: BoneIK = bone_data.bone

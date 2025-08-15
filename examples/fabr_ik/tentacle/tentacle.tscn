@@ -8,41 +8,43 @@
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Tip" type="Polygon2D" parent="Sprites"]
-position = Vector2(-90.42993, -36.135826)
+position = Vector2(111.81647, 90.73631)
+rotation = 0.6816989
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 16, -8, 24, 0, 16, 8, 0, 8)
 
 [node name="Part" type="Polygon2D" parent="Sprites"]
-position = Vector2(-114.42993, -36.13575)
+position = Vector2(93.18039, 75.613594)
+rotation = 0.6816989
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part2" type="Polygon2D" parent="Sprites"]
-position = Vector2(-91.54393, -28.908651)
-rotation = -2.8357162
+position = Vector2(74.54431, 60.490875)
+rotation = 0.6816991
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part3" type="Polygon2D" parent="Sprites"]
-position = Vector2(-68.65795, -21.681498)
-rotation = -2.8357136
+position = Vector2(55.908234, 45.368156)
+rotation = 0.68169904
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part4" type="Polygon2D" parent="Sprites"]
-position = Vector2(-45.771965, -14.454324)
-rotation = -2.835713
+position = Vector2(37.272156, 30.245438)
+rotation = 0.6816991
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part5" type="Polygon2D" parent="Sprites"]
-position = Vector2(-22.885983, -7.227156)
-rotation = -2.8357131
+position = Vector2(18.636078, 15.122718)
+rotation = 0.6816991
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part6" type="Polygon2D" parent="Sprites"]
-rotation = -2.8357136
+rotation = 0.68169904
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
@@ -108,6 +110,7 @@ script = ExtResource("1_h3ap1")
 root_bone = NodePath("../Skeleton/Part6")
 tip_bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3/Part2/Part/Tip")
 target = NodePath("../Marker2D")
+iterations = 20
 target_rotation = true
 chain/0/bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3/Part2/Part")
 chain/1/bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3/Part2")
@@ -119,4 +122,4 @@ enabled = true
 metadata/_custom_type_script = "uid://bdvekem8ayre5"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(-128, -48)
+position = Vector2(122, 99)
