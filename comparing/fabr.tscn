@@ -26,8 +26,9 @@ modifications/0 = SubResource("SkeletonModification2DFABRIK_2b683")
 [node name="LaIKFABR" type="Node2D" parent="." node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone")]
 script = ExtResource("1_lcapt")
 root_bone = NodePath("../One")
-tip_bone = NodePath("../One/Two/Three/Four")
+tip_bone = NodePath("../One/Two/Three")
 target = NodePath("../Aim/AimFABRIK")
+target_rotation = true
 chain/0/bone = NodePath("../One/Two/Three")
 chain/1/bone = NodePath("../One/Two")
 chain/2/bone = NodePath("../One")

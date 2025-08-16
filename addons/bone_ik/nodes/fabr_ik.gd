@@ -18,7 +18,6 @@ extends IKMod
 		queue_redraw.call_deferred()
 
 ## Last bone from the chain.[br][br]
-## [b]Note[/b]: It will not be affected by IK.
 @export var tip_bone: BoneIK:
 	set(t):
 		_undo_modifications()
@@ -36,15 +35,16 @@ extends IKMod
 @export var target: Node2D
 
 ## How many iterations do per execution.[br]
-## More executions will make it converge to the final position faster.[br][br]
-## [b]Note:[/b] Decreasing may cause user to see the bones before the final position.[br]
+## More executions will make it converge to the final position faster,
+## but cost performance.[br][br]
+## [b]Note:[/b] A low value may cause user to see the bones before the final position.[br]
 ## [b]Note:[/b] This is capped at 10 to avoid to accidents of setting it too high.
 @export_range(1, 10, 1) var iterations: int = 10
 
 ## Make [member tip_bone]'s parent use same rotation as the target.
 @export var target_rotation: bool = false
 
-# Contains data about all bones from root_bone until tip_bone (not including it).
+# Contains data about all bones from root_bone until tip_bone.
 # Ordered from tip_bone to root_bone, because this is the order which they are discovered.
 var chain: Array[BoneData]
 
@@ -117,7 +117,7 @@ func _set(property: StringName, value: Variant) -> bool:
 	return false
 
 
-# Update bone chain with all bones from tip_bone to root_bone (not including tip_bone).
+# Update bone chain with all bones from tip_bone to root_bone.
 # It will clear the chain if doesn't find a path.
 # Note: It doesn't overwrite the chain if is the same (otherwise you lose the saved settings).
 func _update_chain() -> void:
@@ -129,7 +129,7 @@ func _update_chain() -> void:
 		chain = []
 		return
 	
-	var parent = tip_bone.get_parent()
+	var parent = tip_bone
 	var new_chain: Array[BoneData] = []
 	
 	while(parent):
@@ -280,12 +280,12 @@ func _apply_modifications(_delta: float) -> void:
 	if out_of_range:
 		return _apply_out_of_range_modifications()
 	
-	# When the user wants the bone poiting same direction as the target,
-	# we move the bone to behind the target (by the distance of the last bone length).
-	# Rotation will be done at the _apply_forwards_modifications() so we don't need to point right now.
+	# When the user wants the bone poiting same direction as the target.
 	if target_rotation:
-		var direction = Vector2(cos(target.global_rotation), sin(target.global_rotation))
-		chain[0].bone.global_position = target.global_position - direction * chain[0].bone.get_bone_length()
+		# Move the bone to behind the target (by the distance of the tip_bone's length).
+		# No rotation is done here because it will be done in _apply_forwards_modifications().
+		var target_direction := Vector2(cos(target.global_rotation), sin(target.global_rotation))
+		tip_bone.global_position = target.global_position - target_direction * tip_bone.get_bone_length()
 	
 	# Where root_bone started (the base of the arm).
 	var base_global_position: Vector2 = root_bone.global_position
@@ -297,7 +297,6 @@ func _apply_modifications(_delta: float) -> void:
 
 func _apply_out_of_range_modifications() -> void:
 	# Doing reversed because the chain goes from tip_bone to root_bone.
-	# Remember: tip_bone is not in the chain.
 	for i in range(chain.size() - 1, -1, -1):
 		chain[i].bone.look_at(target.global_position)
 

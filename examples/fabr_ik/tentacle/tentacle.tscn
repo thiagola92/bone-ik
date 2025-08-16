@@ -8,118 +8,112 @@
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Tip" type="Polygon2D" parent="Sprites"]
-position = Vector2(111.81647, 90.73631)
-rotation = 0.6816989
+position = Vector2(144, 0)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 16, -8, 24, 0, 16, 8, 0, 8)
 
 [node name="Part" type="Polygon2D" parent="Sprites"]
-position = Vector2(93.18039, 75.613594)
-rotation = 0.6816989
+position = Vector2(120, 0)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part2" type="Polygon2D" parent="Sprites"]
-position = Vector2(74.54431, 60.490875)
-rotation = 0.6816991
+position = Vector2(96, 0)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part3" type="Polygon2D" parent="Sprites"]
-position = Vector2(55.908234, 45.368156)
-rotation = 0.68169904
+position = Vector2(72, 0)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part4" type="Polygon2D" parent="Sprites"]
-position = Vector2(37.272156, 30.245438)
-rotation = 0.6816991
+position = Vector2(48, 0)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Part5" type="Polygon2D" parent="Sprites"]
-position = Vector2(18.636078, 15.122718)
-rotation = 0.6816991
+position = Vector2(24, 0)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
-[node name="Part6" type="Polygon2D" parent="Sprites"]
-rotation = 0.68169904
+[node name="Root" type="Polygon2D" parent="Sprites"]
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
 [node name="Skeleton" type="Node2D" parent="."]
 
-[node name="Part6" type="Node2D" parent="Skeleton"]
+[node name="Root" type="Node2D" parent="Skeleton"]
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6"]
-remote_path = NodePath("../../../Sprites/Part6")
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root"]
+remote_path = NodePath("../../../Sprites/Root")
 
-[node name="Part5" type="Node2D" parent="Skeleton/Part6"]
+[node name="Part5" type="Node2D" parent="Skeleton/Root"]
 position = Vector2(24, 0)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6/Part5"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5"]
 remote_path = NodePath("../../../../Sprites/Part5")
 
-[node name="Part4" type="Node2D" parent="Skeleton/Part6/Part5"]
+[node name="Part4" type="Node2D" parent="Skeleton/Root/Part5"]
 position = Vector2(24, 0)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6/Part5/Part4"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4"]
 remote_path = NodePath("../../../../../Sprites/Part4")
 
-[node name="Part3" type="Node2D" parent="Skeleton/Part6/Part5/Part4"]
+[node name="Part3" type="Node2D" parent="Skeleton/Root/Part5/Part4"]
 position = Vector2(24, 0)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6/Part5/Part4/Part3"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3"]
 remote_path = NodePath("../../../../../../Sprites/Part3")
 
-[node name="Part2" type="Node2D" parent="Skeleton/Part6/Part5/Part4/Part3"]
+[node name="Part2" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3"]
 position = Vector2(24, 0)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6/Part5/Part4/Part3/Part2"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2"]
 remote_path = NodePath("../../../../../../../Sprites/Part2")
 
-[node name="Part" type="Node2D" parent="Skeleton/Part6/Part5/Part4/Part3/Part2"]
+[node name="Part" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2"]
 position = Vector2(24, 0)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6/Part5/Part4/Part3/Part2/Part"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part"]
 remote_path = NodePath("../../../../../../../../Sprites/Part")
 
-[node name="Tip" type="Node2D" parent="Skeleton/Part6/Part5/Part4/Part3/Part2/Part"]
+[node name="Tip" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part"]
 position = Vector2(24, 0)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
-[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Part6/Part5/Part4/Part3/Part2/Part/Tip"]
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip"]
 remote_path = NodePath("../../../../../../../../../Sprites/Tip")
 
-[node name="FABRIK" type="Node2D" parent="." node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone", "chain/3/bone", "chain/4/bone", "chain/5/bone")]
+[node name="FABRIK" type="Node2D" parent="." node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone", "chain/3/bone", "chain/4/bone", "chain/5/bone", "chain/6/bone")]
 script = ExtResource("1_h3ap1")
-root_bone = NodePath("../Skeleton/Part6")
-tip_bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3/Part2/Part/Tip")
+root_bone = NodePath("../Skeleton/Root")
+tip_bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
 target = NodePath("../Marker2D")
-iterations = 20
+iterations = 1
 target_rotation = true
-chain/0/bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3/Part2/Part")
-chain/1/bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3/Part2")
-chain/2/bone = NodePath("../Skeleton/Part6/Part5/Part4/Part3")
-chain/3/bone = NodePath("../Skeleton/Part6/Part5/Part4")
-chain/4/bone = NodePath("../Skeleton/Part6/Part5")
-chain/5/bone = NodePath("../Skeleton/Part6")
+chain/0/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
+chain/1/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part")
+chain/2/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2")
+chain/3/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3")
+chain/4/bone = NodePath("../Skeleton/Root/Part5/Part4")
+chain/5/bone = NodePath("../Skeleton/Root/Part5")
+chain/6/bone = NodePath("../Skeleton/Root")
 enabled = true
 metadata/_custom_type_script = "uid://bdvekem8ayre5"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(122, 99)
+position = Vector2(192, 0)
