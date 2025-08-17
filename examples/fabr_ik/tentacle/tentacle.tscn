@@ -8,42 +8,151 @@
 [node name="Sprites" type="Node2D" parent="."]
 
 [node name="Tip" type="Polygon2D" parent="Sprites"]
-position = Vector2(144, 0)
+position = Vector2(143.99998, 0)
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 16, -8, 24, 0, 16, 8, 0, 8)
 
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Tip"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Tip/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Tip/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
 [node name="Part" type="Polygon2D" parent="Sprites"]
-position = Vector2(120, 0)
+position = Vector2(119.999985, 0)
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
 
 [node name="Part2" type="Polygon2D" parent="Sprites"]
-position = Vector2(96, 0)
+position = Vector2(95.999985, 0)
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part2"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part2/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part2/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part2/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
 
 [node name="Part3" type="Polygon2D" parent="Sprites"]
-position = Vector2(72, 0)
+position = Vector2(71.999985, 0)
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part3"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part3/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part3/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part3/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
 
 [node name="Part4" type="Polygon2D" parent="Sprites"]
-position = Vector2(48, 0)
+position = Vector2(47.999992, 0)
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part4"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part4/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part4/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part4/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
 
 [node name="Part5" type="Polygon2D" parent="Sprites"]
-position = Vector2(24, 0)
+position = Vector2(23.999996, 0)
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
 
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part5"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part5/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part5/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part5/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
 [node name="Root" type="Polygon2D" parent="Sprites"]
+scale = Vector2(0.9999999, 0.9999999)
 color = Color(0.32796365, 0.026472185, 0.71484375, 1)
 polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Root"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Root/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Root/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Root/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
 
 [node name="Skeleton" type="Node2D" parent="."]
 
 [node name="Root" type="Node2D" parent="Skeleton"]
+scale = Vector2(0.9999999, 0.9999999)
 script = ExtResource("1_f4xev")
 metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
 
@@ -103,8 +212,6 @@ script = ExtResource("1_h3ap1")
 root_bone = NodePath("../Skeleton/Root")
 tip_bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
 target = NodePath("../Marker2D")
-iterations = 1
-target_rotation = true
 chain/0/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
 chain/1/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part")
 chain/2/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2")
@@ -116,4 +223,4 @@ enabled = true
 metadata/_custom_type_script = "uid://bdvekem8ayre5"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(192, 0)
+position = Vector2(168, 0)

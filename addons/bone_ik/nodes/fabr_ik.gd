@@ -44,6 +44,13 @@ extends IKMod
 ## Make [member tip_bone]'s parent use same rotation as the target.
 @export var target_rotation: bool = false
 
+## It will restore initial pose before making calculations.
+## When [code]false[/code], it will calculate based on previous state, which could
+## cause a loop when trying to find the best position.[br][br]
+## [b]Note:[/b] When [code]true[/code], it may cancel others IKs on the chain bones.[br]
+## [b]Note:[/b] Recomended when [member target_rotation] is [code]true[/code].
+@export var deterministic: bool = false
+
 # Contains data about all bones from root_bone until tip_bone.
 # Ordered from tip_bone to root_bone, because this is the order which they are discovered.
 var chain: Array[BoneData]
@@ -263,29 +270,24 @@ func _apply_modifications(_delta: float) -> void:
 	if not tip_bone or not tip_bone.is_inside_tree():
 		return
 	
-	var chain_length: float = 0
+	if deterministic:
+		_undo_modifications()
 	
 	# Changing one bone will emit a signal to update others bones autocalculated length/angle,
 	# so we need to cache everyone before changing anyone.
 	for bone_data in chain:
 		bone_data.bone.cache_pose()
 		bone_data.bone.is_pose_modified = true
-		
-		chain_length += bone_data.bone.get_bone_length()
-	
-	var target_distance: float = root_bone.global_position.distance_to(target.global_position)
-	var out_of_range: bool = target_distance > chain_length
-	
-	# Easiest case, target is out of range.
-	if out_of_range:
-		return _apply_out_of_range_modifications()
 	
 	# When the user wants the bone poiting same direction as the target.
 	if target_rotation:
-		# Move the bone to behind the target (by the distance of the tip_bone's length).
+		# We are attempting to put the tip bone to behind the target,
+		# by the distance of the tip_bone's length.
+		var target_direction := Vector2.from_angle(target.global_rotation)
+		var behind_position := target.global_position - target_direction * tip_bone.get_bone_length()
+		
 		# No rotation is done here because it will be done in _apply_forwards_modifications().
-		var target_direction := Vector2(cos(target.global_rotation), sin(target.global_rotation))
-		tip_bone.global_position = target.global_position - target_direction * tip_bone.get_bone_length()
+		tip_bone.global_position = behind_position
 	
 	# Where root_bone started (the base of the arm).
 	var base_global_position: Vector2 = root_bone.global_position
@@ -295,19 +297,15 @@ func _apply_modifications(_delta: float) -> void:
 		_apply_backwards_modifications(base_global_position)
 
 
-func _apply_out_of_range_modifications() -> void:
-	# Doing reversed because the chain goes from tip_bone to root_bone.
-	for i in range(chain.size() - 1, -1, -1):
-		chain[i].bone.look_at(target.global_position)
-
-
 # Move each bone forward to the target position.
 func _apply_forwards_modifications() -> void:
 	# The bone closest to the tip is aiming the target,
 	# others bones are aiming the following bone.
-	var target_global_position = target.global_position
+	var bone_target: Node2D = target
 	
 	for bone_data in chain:
+		var target_global_rotation: float = bone_target.global_rotation
+		var target_global_position: Vector2 = bone_target.global_position
 		var bone: BoneIK = bone_data.bone
 		
 		# Look at target first.
@@ -322,8 +320,14 @@ func _apply_forwards_modifications() -> void:
 		var ratio: float = bone.get_bone_length() / stretch.length()
 		bone.global_position = target_global_position - stretch * ratio
 		
-		# Next bone target is this bone start position.
-		target_global_position = bone.global_position
+		# Restore previous bone rotation and position because it is affected
+		# by rotation and position of the current one.
+		if bone_target != target:
+			bone_target.global_rotation = target_global_rotation
+			bone_target.global_position = target_global_position
+		
+		# Next bone target is the current bone.
+		bone_target = bone
 
 
 # Move each bone backward to the base position.
