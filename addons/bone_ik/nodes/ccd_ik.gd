@@ -18,7 +18,6 @@ extends IKMod
 		queue_redraw.call_deferred()
 
 ## Last bone from the chain.[br][br]
-## [b]Note[/b]: It will not be affected by IK.
 @export var tip_bone: BoneIK:
 	set(t):
 		_undo_modifications()
@@ -43,7 +42,7 @@ extends IKMod
 		forward_execution = i
 		chain.reverse()
 
-# Contains data about all bones from root_bone until tip_bone (not including it).
+# Contains data about all bones from root_bone until tip_bone.
 var chain: Array[BoneData]
 
 
@@ -75,8 +74,8 @@ func _get(property: StringName) -> Variant:
 				return chain[index].bone
 			"skip":
 				return chain[index].skip
-			"ignore_tip":
-				return chain[index].ignore_tip
+			"look_at_target":
+				return chain[index].look_at_target
 			"constraints" when parts[3] == "enabled":
 				return chain[index].constraint_enabled
 			"constraints" when parts[3] == "visible":
@@ -112,7 +111,7 @@ func _get_property_list() -> Array[Dictionary]:
 		})
 		
 		property_list.append({
-			"name": "chain/%s/ignore_tip" % i,
+			"name": "chain/%s/look_at_target" % i,
 			"type": TYPE_BOOL,
 			"usage": PROPERTY_USAGE_DEFAULT,
 		})
@@ -181,8 +180,8 @@ func _set(property: StringName, value: Variant) -> bool:
 				chain[index].bone = value
 			"skip":
 				chain[index].skip = value
-			"ignore_tip":
-				chain[index].ignore_tip = value
+			"look_at_target":
+				chain[index].look_at_target = value
 			"constraints" when parts[3] == "enabled":
 				chain[index].constraint_enabled = value
 			"constraints" when parts[3] == "visible":
@@ -216,7 +215,7 @@ func _update_chain() -> void:
 		chain = []
 		return
 	
-	var parent = tip_bone.get_parent()
+	var parent = tip_bone
 	var new_chain: Array[BoneData] = []
 	
 	while(parent):
@@ -366,14 +365,17 @@ func _apply_modifications(_delta: float) -> void:
 		if bone_data.skip:
 			continue
 		
-		if bone_data.ignore_tip:
-			# Put bone close to target.
+		if bone_data.look_at_target:
 			bone.look_at(target.global_position)
 			bone.rotation -= bone.bone_angle
 		else:
+			# Discover the tip of the tip_bone.
+			var tip_direction: Vector2 = Vector2.from_angle(tip_bone.global_rotation)
+			var tip: Vector2 = tip_bone.global_position + tip_direction * tip_bone.get_bone_length()
+			
 			# Put bone close to target without pushing tip away.
 			var angle_to_target: float = bone.global_position.angle_to_point(target.global_position)
-			var angle_to_tip: float = bone.global_position.angle_to_point(tip_bone.global_position)
+			var angle_to_tip: float = bone.global_position.angle_to_point(tip)
 			var angle_diff: float = angle_to_target - angle_to_tip
 			var same_sign: bool = bone.global_scale.sign().x == bone.global_scale.sign().y
 			
@@ -406,7 +408,7 @@ func _apply_modifications(_delta: float) -> void:
 class BoneData extends RefCounted:
 	var bone: BoneIK
 	var skip: bool = false
-	var ignore_tip = false
+	var look_at_target = false
 	
 	var constraint_enabled: bool = false
 	var constraint_visible: bool = true
