@@ -1,0 +1,181 @@
+[gd_scene load_steps=3 format=3 uid="uid://bxteiwnrown0w"]
+
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="1_chbck"]
+[ext_resource type="Script" uid="uid://btk37mka80rfg" path="res://addons/bone_ik/nodes/ccd_ik.gd" id="2_pulsc"]
+
+[node name="RobotGrabber" type="Node2D"]
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Tip" type="Polygon2D" parent="Sprites"]
+position = Vector2(143.99998, 0)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(1.5258789e-05, -16.000002, 24.000015, -16.000002, 24.000015, -8.000001, 8.000015, -8.000001, 8.000015, 8.000001, 24.000015, 8.000001, 24.000015, 16.000002, 1.5258789e-05, 16.000002)
+
+[node name="Part" type="Polygon2D" parent="Sprites"]
+position = Vector2(119.999985, 0)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Part2" type="Polygon2D" parent="Sprites"]
+position = Vector2(95.999985, 0)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Part3" type="Polygon2D" parent="Sprites"]
+position = Vector2(71.999985, 0)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Part4" type="Polygon2D" parent="Sprites"]
+position = Vector2(47.999992, 0)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Part5" type="Polygon2D" parent="Sprites"]
+position = Vector2(23.999996, 0)
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Root" type="Polygon2D" parent="Sprites"]
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.59765625, 0.5420571, 0, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Skeleton" type="Node2D" parent="."]
+
+[node name="Root" type="Node2D" parent="Skeleton"]
+scale = Vector2(0.9999999, 0.9999999)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root"]
+remote_path = NodePath("../../../Sprites/Root")
+
+[node name="Part5" type="Node2D" parent="Skeleton/Root"]
+position = Vector2(24, 0)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5"]
+remote_path = NodePath("../../../../Sprites/Part5")
+
+[node name="Part4" type="Node2D" parent="Skeleton/Root/Part5"]
+position = Vector2(24, 0)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4"]
+remote_path = NodePath("../../../../../Sprites/Part4")
+
+[node name="Part3" type="Node2D" parent="Skeleton/Root/Part5/Part4"]
+position = Vector2(24, 0)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3"]
+remote_path = NodePath("../../../../../../Sprites/Part3")
+
+[node name="Part2" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3"]
+position = Vector2(24, 0)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2"]
+remote_path = NodePath("../../../../../../../Sprites/Part2")
+
+[node name="Part" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2"]
+position = Vector2(24, 0)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part"]
+remote_path = NodePath("../../../../../../../../Sprites/Part")
+
+[node name="Tip" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part"]
+position = Vector2(24, 0)
+script = ExtResource("1_chbck")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip"]
+remote_path = NodePath("../../../../../../../../../Sprites/Tip")
+
+[node name="CCDIK" type="Node2D" parent="." node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone", "chain/3/bone", "chain/4/bone", "chain/5/bone", "chain/6/bone")]
+script = ExtResource("2_pulsc")
+root_bone = NodePath("../Skeleton/Root")
+tip_bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
+target = NodePath("../Marker2D")
+chain/0/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
+chain/0/skip = false
+chain/0/look_at_target = false
+chain/0/constraints/enabled = true
+chain/0/constraints/visible = true
+chain/0/constraints/min_angle = -0.7853981633974483
+chain/0/constraints/max_angle = 0.7853981633974483
+chain/0/constraints/inverted = true
+chain/0/constraints/localspace = true
+chain/1/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part")
+chain/1/skip = false
+chain/1/look_at_target = false
+chain/1/constraints/enabled = true
+chain/1/constraints/visible = true
+chain/1/constraints/min_angle = -0.7853981633974483
+chain/1/constraints/max_angle = 0.7853981633974483
+chain/1/constraints/inverted = true
+chain/1/constraints/localspace = true
+chain/2/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2")
+chain/2/skip = false
+chain/2/look_at_target = null
+chain/2/constraints/enabled = true
+chain/2/constraints/visible = true
+chain/2/constraints/min_angle = -0.7853981633974483
+chain/2/constraints/max_angle = 0.7853981633974483
+chain/2/constraints/inverted = true
+chain/2/constraints/localspace = true
+chain/3/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3")
+chain/3/skip = false
+chain/3/look_at_target = false
+chain/3/constraints/enabled = true
+chain/3/constraints/visible = true
+chain/3/constraints/min_angle = -0.7853981633974483
+chain/3/constraints/max_angle = 0.7853981633974483
+chain/3/constraints/inverted = true
+chain/3/constraints/localspace = true
+chain/4/bone = NodePath("../Skeleton/Root/Part5/Part4")
+chain/4/skip = false
+chain/4/look_at_target = null
+chain/4/constraints/enabled = true
+chain/4/constraints/visible = true
+chain/4/constraints/min_angle = -0.7853981633974483
+chain/4/constraints/max_angle = 0.7853981633974483
+chain/4/constraints/inverted = true
+chain/4/constraints/localspace = true
+chain/5/bone = NodePath("../Skeleton/Root/Part5")
+chain/5/skip = false
+chain/5/look_at_target = null
+chain/5/constraints/enabled = true
+chain/5/constraints/visible = true
+chain/5/constraints/min_angle = -0.7853981633974483
+chain/5/constraints/max_angle = 0.7853981633974483
+chain/5/constraints/inverted = true
+chain/5/constraints/localspace = true
+chain/6/bone = NodePath("../Skeleton/Root")
+chain/6/skip = false
+chain/6/look_at_target = null
+chain/6/constraints/enabled = true
+chain/6/constraints/visible = true
+chain/6/constraints/min_angle = -0.7853981633974483
+chain/6/constraints/max_angle = 0.7853981633974483
+chain/6/constraints/inverted = true
+chain/6/constraints/localspace = true
+enabled = true
+metadata/_custom_type_script = "uid://btk37mka80rfg"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(184, 0)
