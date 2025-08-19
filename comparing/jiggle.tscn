@@ -1,0 +1,70 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbb4xtgj8ixsg"]
+
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="2_xth81"]
+
+[sub_resource type="SkeletonModification2DJiggle" id="SkeletonModification2DJiggle_ewova"]
+target_nodepath = NodePath("../Aim/AimFABRIK2")
+jiggle_data_chain_length = 3
+joint_data/0/bone_index = 0
+joint_data/0/bone2d_node = NodePath("One")
+joint_data/0/override_defaults = false
+joint_data/1/bone_index = 1
+joint_data/1/bone2d_node = NodePath("One/Two")
+joint_data/1/override_defaults = false
+joint_data/2/bone_index = 2
+joint_data/2/bone2d_node = NodePath("One/Two/Three")
+joint_data/2/override_defaults = false
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_4ds0b"]
+enabled = true
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DJiggle_ewova")
+
+[node name="Test5" type="Node2D"]
+
+[node name="One" type="Node2D" parent="."]
+position = Vector2(0, -100)
+script = ExtResource("2_xth81")
+
+[node name="Two" type="Node2D" parent="One"]
+position = Vector2(100, 0)
+script = ExtResource("2_xth81")
+
+[node name="Three" type="Node2D" parent="One/Two"]
+position = Vector2(100, 0)
+script = ExtResource("2_xth81")
+
+[node name="Four" type="Node2D" parent="One/Two/Three"]
+position = Vector2(100, 0)
+script = ExtResource("2_xth81")
+
+[node name="Aim" type="Marker2D" parent="."]
+position = Vector2(335, 0)
+
+[node name="AimFABRIK" type="Marker2D" parent="Aim"]
+position = Vector2(0, -100)
+
+[node name="AimFABRIK2" type="Marker2D" parent="Aim"]
+position = Vector2(0, 100)
+
+[node name="Skeleton2D" type="Skeleton2D" parent="."]
+position = Vector2(0, 100)
+modification_stack = SubResource("SkeletonModificationStack2D_4ds0b")
+
+[node name="One" type="Bone2D" parent="Skeleton2D"]
+rest = Transform2D(1, 0, 0, 1, 0, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Two" type="Bone2D" parent="Skeleton2D/One"]
+position = Vector2(100, 0)
+rest = Transform2D(1, 0, 0, 1, 100, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Three" type="Bone2D" parent="Skeleton2D/One/Two"]
+position = Vector2(100, 0)
+rest = Transform2D(1, 0, 0, 1, 100, 0)
+metadata/_local_pose_override_enabled_ = true
+
+[node name="Four" type="Bone2D" parent="Skeleton2D/One/Two/Three"]
+position = Vector2(100, 0)
+rest = Transform2D(1, 0, 0, 1, 100, 0)

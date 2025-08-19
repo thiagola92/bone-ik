@@ -223,4 +223,4 @@ enabled = true
 metadata/_custom_type_script = "uid://bdvekem8ayre5"
 
 [node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(168, 0)
+position = Vector2(184, 0)
