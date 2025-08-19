@@ -33,6 +33,18 @@ extends IKMod
 ## Node which will bend all bones from [member root_bone] until [member tip_bone] when geting close to them.
 @export var target: Node2D
 
+## How many iterations do per execution.[br]
+## More executions will make it converge to the final position faster,
+## but cost performance.[br][br]
+## [b]Note:[/b] A low value may cause user to see the bones before the final position.[br]
+## [b]Note:[/b] This is capped to avoid to accidents of setting it too high.
+@export_range(1, 10, 1) var iterations: int = 1
+
+## It will restore initial pose before making calculations.[br]
+## When [code]false[/code], it will calculate based on previous state.[br][br]
+## [b]Note:[/b] When [code]true[/code], it may cancel others IKs on the chain bones.[br]
+@export var deterministic: bool = false
+
 ## Decide the order which bones from the chain will receive modifications.[br][br]
 ## The default behavior is going from [member tip_bone] to [member root_bone]
 ## (this is the order which parent bones are discovered).
@@ -41,18 +53,6 @@ extends IKMod
 	set(i):
 		forward_execution = i
 		chain.reverse()
-
-## It will restore initial pose before making calculations.[br]
-## When [code]false[/code], it will calculate based on previous state.[br][br]
-## [b]Note:[/b] When [code]true[/code], it may cancel others IKs on the chain bones.[br]
-@export var deterministic: bool = false
-
-## How many iterations do per execution.[br]
-## More executions will make it converge to the final position faster,
-## but cost performance.[br][br]
-## [b]Note:[/b] A low value may cause user to see the bones before the final position.[br]
-## [b]Note:[/b] This is capped to avoid to accidents of setting it too high.
-@export_range(1, 10, 1) var iterations: int = 1
 
 # Contains data about all bones from root_bone until tip_bone.
 var chain: Array[BoneData]
