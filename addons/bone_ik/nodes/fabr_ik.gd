@@ -38,15 +38,15 @@ extends IKMod
 ## More executions will make it converge to the final position faster,
 ## but cost performance.[br][br]
 ## [b]Note:[/b] A low value may cause user to see the bones before the final position.[br]
-## [b]Note:[/b] This is capped at 10 to avoid to accidents of setting it too high.
+## [b]Note:[/b] This is capped to avoid to accidents of setting it too high.
 @export_range(1, 10, 1) var iterations: int = 10
 
 ## Make [member tip_bone]'s parent use same rotation as the target.
 @export var target_rotation: bool = false
 
-## It will restore initial pose before making calculations.
-## When [code]false[/code], it will calculate based on previous state, which could
-## cause a loop when trying to find the best position.[br][br]
+## It will restore initial pose before making calculations.[br]
+## When [code]false[/code], it will calculate based on previous state.[br][br]
+## [b]Note:[/b] On FABRIK, could cause a loop when trying to find the best position.[br]
 ## [b]Note:[/b] When [code]true[/code], it may cancel others IKs on the chain bones.[br]
 ## [b]Note:[/b] Recomended when [member target_rotation] is [code]true[/code].
 @export var deterministic: bool = false

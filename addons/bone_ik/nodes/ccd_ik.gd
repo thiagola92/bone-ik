@@ -42,6 +42,18 @@ extends IKMod
 		forward_execution = i
 		chain.reverse()
 
+## It will restore initial pose before making calculations.[br]
+## When [code]false[/code], it will calculate based on previous state.[br][br]
+## [b]Note:[/b] When [code]true[/code], it may cancel others IKs on the chain bones.[br]
+@export var deterministic: bool = false
+
+## How many iterations do per execution.[br]
+## More executions will make it converge to the final position faster,
+## but cost performance.[br][br]
+## [b]Note:[/b] A low value may cause user to see the bones before the final position.[br]
+## [b]Note:[/b] This is capped to avoid to accidents of setting it too high.
+@export_range(1, 10, 1) var iterations: int = 1
+
 # Contains data about all bones from root_bone until tip_bone.
 var chain: Array[BoneData]
 
@@ -351,6 +363,9 @@ func _apply_modifications(_delta: float) -> void:
 	if not tip_bone or not tip_bone.is_inside_tree():
 		return
 	
+	if deterministic:
+		_undo_modifications()
+	
 	# Changing one bone will emit a signal to update others bones autocalculated length/angle,
 	# so we need to cache everyone before changing anyone.
 	for bone_data in chain:
@@ -359,6 +374,11 @@ func _apply_modifications(_delta: float) -> void:
 		bone_data.bone.cache_pose()
 		bone_data.bone.is_pose_modified = true
 	
+	for i in iterations:
+		_apply_bone_modifications()
+
+
+func _apply_bone_modifications() -> void:
 	for bone_data in chain:
 		var bone: BoneIK = bone_data.bone
 		
