@@ -42,6 +42,8 @@ So I started rewriting in GDScript to get a better knowledge of the logic! The d
 
 This could be a bad decision, but rewriting will give me a better idea of the problems and solutions that others had.
 
+(06-09-2025) After a long time, it seems that some PRs are being merged! Which means that this project will probably be obsolete 😆.  
+
 [1]: https://github.com/godotengine/godot/pull/83397
 [2]: https://github.com/godotengine/godot/pull/83330
 [3]: https://github.com/godotengine/godot/pull/81544
