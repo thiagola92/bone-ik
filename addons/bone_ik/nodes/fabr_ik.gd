@@ -279,7 +279,7 @@ func _apply_modifications(_delta: float) -> void:
 		bone_data.bone.cache_pose()
 		bone_data.bone.is_pose_modified = true
 	
-	# When the user wants the bone poiting same direction as the target.
+	# When the user wants the tip poiting same direction as the target.
 	if target_rotation:
 		# We are attempting to put the tip bone to behind the target,
 		# by the distance of the tip_bone's length.

@@ -1,0 +1,235 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3ab2htlnvo5c"]
+
+[ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="1_4edm8"]
+[ext_resource type="Script" uid="uid://bdvekem8ayre5" path="res://addons/bone_ik/nodes/fabr_ik.gd" id="2_fqybp"]
+
+[node name="Tentacle" type="Node2D"]
+
+[node name="Sprites" type="Node2D" parent="."]
+
+[node name="Tip" type="Polygon2D" parent="Sprites"]
+position = Vector2(128.33519, 4.266427)
+rotation = -0.076495394
+scale = Vector2(0.9999998, 0.9999998)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 16, -8, 24, 0, 16, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Tip"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Tip/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Tip/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Part" type="Polygon2D" parent="Sprites"]
+position = Vector2(104.40536, 6.10053)
+rotation = -0.076495506
+scale = Vector2(0.9999998, 0.9999998)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Part2" type="Polygon2D" parent="Sprites"]
+position = Vector2(80.47554, 7.9346347)
+rotation = -0.076495595
+scale = Vector2(0.9999998, 0.9999998)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part2"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part2/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part2/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part2/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Part3" type="Polygon2D" parent="Sprites"]
+position = Vector2(56.545727, 9.76874)
+rotation = -0.07649563
+scale = Vector2(0.9999998, 0.9999998)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part3"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part3/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part3/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part3/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Part4" type="Polygon2D" parent="Sprites"]
+position = Vector2(32.615913, 11.602845)
+rotation = -0.076495655
+scale = Vector2(0.9999998, 0.9999998)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part4"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part4/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part4/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part4/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Part5" type="Polygon2D" parent="Sprites"]
+position = Vector2(8.686102, 13.436951)
+rotation = -0.07649565
+scale = Vector2(0.9999998, 0.9999998)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Part5"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part5/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part5/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Part5/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Root" type="Polygon2D" parent="Sprites"]
+rotation = 0.996932
+scale = Vector2(0.9999999, 0.9999999)
+color = Color(0.32796365, 0.026472185, 0.71484375, 1)
+polygon = PackedVector2Array(0, -8, 24, -8, 24, 8, 0, 8)
+
+[node name="Polygon2D" type="Polygon2D" parent="Sprites/Root"]
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Root/Polygon2D"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Root/Polygon2D/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Sprites/Root/Polygon2D/Polygon2D2/Polygon2D2"]
+position = Vector2(5, 0)
+polygon = PackedVector2Array(4, 4, 4, 7, 7, 7, 7, 4)
+
+[node name="Skeleton" type="Node2D" parent="."]
+
+[node name="Root" type="Node2D" parent="Skeleton"]
+scale = Vector2(0.9999999, 0.9999999)
+script = ExtResource("1_4edm8")
+autocalculate_length_and_angle = false
+bone_angle = 0.7853981633974483
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root"]
+remote_path = NodePath("../../../Sprites/Root")
+
+[node name="Part5" type="Node2D" parent="Skeleton/Root"]
+position = Vector2(24, 0)
+script = ExtResource("1_4edm8")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5"]
+remote_path = NodePath("../../../../Sprites/Part5")
+
+[node name="Part4" type="Node2D" parent="Skeleton/Root/Part5"]
+position = Vector2(24, 0)
+script = ExtResource("1_4edm8")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4"]
+remote_path = NodePath("../../../../../Sprites/Part4")
+
+[node name="Part3" type="Node2D" parent="Skeleton/Root/Part5/Part4"]
+position = Vector2(24, 0)
+script = ExtResource("1_4edm8")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3"]
+remote_path = NodePath("../../../../../../Sprites/Part3")
+
+[node name="Part2" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3"]
+position = Vector2(24, 0)
+script = ExtResource("1_4edm8")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2"]
+remote_path = NodePath("../../../../../../../Sprites/Part2")
+
+[node name="Part" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2"]
+position = Vector2(24, 0)
+script = ExtResource("1_4edm8")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part"]
+remote_path = NodePath("../../../../../../../../Sprites/Part")
+
+[node name="Tip" type="Node2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part"]
+position = Vector2(24, 0)
+script = ExtResource("1_4edm8")
+metadata/_custom_type_script = "uid://dv0jwy6qemn6v"
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip"]
+remote_path = NodePath("../../../../../../../../../Sprites/Tip")
+
+[node name="FABRIK" type="Node2D" parent="." node_paths=PackedStringArray("root_bone", "tip_bone", "target", "chain/0/bone", "chain/1/bone", "chain/2/bone", "chain/3/bone", "chain/4/bone", "chain/5/bone", "chain/6/bone")]
+script = ExtResource("2_fqybp")
+root_bone = NodePath("../Skeleton/Root")
+tip_bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
+target = NodePath("../Marker2D")
+chain/0/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part/Tip")
+chain/1/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2/Part")
+chain/2/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3/Part2")
+chain/3/bone = NodePath("../Skeleton/Root/Part5/Part4/Part3")
+chain/4/bone = NodePath("../Skeleton/Root/Part5/Part4")
+chain/5/bone = NodePath("../Skeleton/Root/Part5")
+chain/6/bone = NodePath("../Skeleton/Root")
+enabled = true
+metadata/_custom_type_script = "uid://bdvekem8ayre5"
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(184, 0)
