@@ -210,6 +210,9 @@ func _apply_modifications(_delta: float) -> void:
 
 
 func _draw_gizmo() -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	if not constraint_visible:
 		return
 	

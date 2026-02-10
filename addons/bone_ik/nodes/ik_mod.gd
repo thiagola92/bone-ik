@@ -105,6 +105,9 @@ func _draw_angle_constraints(
 	localspace: bool,
 	inverted: bool,
 ) -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	if not main_bone:
 		return
 	

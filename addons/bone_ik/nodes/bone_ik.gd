@@ -74,6 +74,9 @@ func _ready() -> void:
 	set_notify_transform(true)
 	set_notify_local_transform(true)
 	
+	if not Engine.is_editor_hint():
+		return
+	
 	_bone_shape = _create_bone_shape()
 	_bone_outline_shape = _create_bone_outline_shape()
 	
@@ -87,6 +90,9 @@ func _ready() -> void:
 
 
 func _exit_tree() -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	if EditorInterface.has_method("get_selection"):
 		if EditorInterface.get_selection().selection_changed.is_connected(_update_shapes):
 			EditorInterface.get_selection().selection_changed.disconnect(_update_shapes)
@@ -295,6 +301,9 @@ func _decrease_bone_shapes() -> void:
 
 
 func _update_shape(bone_shape: Polygon2D, bone_outline_shape: Polygon2D, child_bone: BoneIK) -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	if not bone_shape:
 		return
 	
@@ -346,6 +355,9 @@ func _update_shape(bone_shape: Polygon2D, bone_outline_shape: Polygon2D, child_b
 
 
 func _update_shape_color(bone_shape: Polygon2D, bone_outline_shape: Polygon2D) -> void:
+	if not Engine.is_editor_hint():
+		return
+	
 	if not bone_shape:
 		return
 	
