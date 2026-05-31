@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dxkhj8andvbm7"]
 
-[ext_resource type="Texture2D" uid="uid://kuexw1nlukuh" path="res://examples/look_at/facing/head.svg" id="1_5eta3"]
-[ext_resource type="Script" uid="uid://bbvhlkjy6soit" path="res://examples/look_at/facing/facing.gd" id="1_hvp42"]
+[ext_resource type="Texture2D" uid="uid://kuexw1nlukuh" path="res://examples/look_at/example00/head.svg" id="1_5eta3"]
+[ext_resource type="Script" uid="uid://bbvhlkjy6soit" path="res://examples/look_at/example00/example.gd" id="1_hvp42"]
 [ext_resource type="Script" uid="uid://dv0jwy6qemn6v" path="res://addons/bone_ik/nodes/bone_ik.gd" id="2_v2iw4"]
 [ext_resource type="Script" uid="uid://bi3kwer7hfwob" path="res://addons/bone_ik/nodes/look_at_ik.gd" id="3_6qeug"]
 
-[node name="Facing" type="Node2D" unique_id=529799542]
+[node name="Example" type="Node2D" unique_id=529799542]
 script = ExtResource("1_hvp42")
 
 [node name="Player" type="Node2D" parent="." unique_id=804786541]
