@@ -3,9 +3,12 @@ extends Node2D
 
 
 func _process(_delta: float) -> void:
-	var on_the_left: bool = $Target.global_position.x < $BoneIK.global_position.x
+	if not Engine.is_editor_hint():
+		$Target.global_position = get_global_mouse_position()
+	
+	var on_the_left: bool = $Target.global_position.x < $Player/BoneIK.global_position.x
 	
 	if on_the_left:
-		scale.x = -1
+		$Player.scale.x = -1
 	else:
-		scale.x = 1
+		$Player.scale.x = 1
