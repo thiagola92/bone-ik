@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://b7t6njib28qx2"]
+
+[ext_resource type="Script" uid="uid://p2takc3yjuwu" path="res://addons/ik2d/nodes/core/bone_shape_ik2d.gd" id="1_37kl0"]
+
+[node name="Test" type="Node2D" unique_id=376430662]
+
+[node name="BoneShapeIK2D" type="Polygon2D" parent="." unique_id=1731018216]
+z_index = 4096
+script = ExtResource("1_37kl0")
+metadata/_custom_type_script = "uid://p2takc3yjuwu"

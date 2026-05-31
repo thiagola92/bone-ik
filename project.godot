@@ -19,7 +19,7 @@ config/features=PackedStringArray("4.7", "GL Compatibility")
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/bone_ik/plugin.cfg")
+enabled=PackedStringArray("res://addons/bone_ik/plugin.cfg", "res://addons/ik2d/plugin.cfg")
 
 [rendering]
 
