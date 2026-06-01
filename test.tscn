@@ -1,10 +1,24 @@
 [gd_scene format=3 uid="uid://b7t6njib28qx2"]
 
-[ext_resource type="Script" uid="uid://p2takc3yjuwu" path="res://addons/ik2d/nodes/core/bone_shape_ik2d.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://jtc0fwkwaaqk" path="res://test.gd" id="1_8uh7m"]
+[ext_resource type="Script" uid="uid://p2takc3yjuwu" path="res://addons/bone_ik/nodes/gizmos/shape_gizmo.gd" id="1_37kl0"]
+[ext_resource type="Script" uid="uid://c5m2o2xl1g62r" path="res://addons/bone_ik/nodes/gizmos/arc_gizmo.gd" id="3_6uqi0"]
+[ext_resource type="Script" uid="uid://0tb2ql2hvthv" path="res://addons/bone_ik/nodes/gizmos/line_gizmo.gd" id="4_ppyta"]
 
 [node name="Test" type="Node2D" unique_id=376430662]
+script = ExtResource("1_8uh7m")
 
-[node name="BoneShapeIK2D" type="Polygon2D" parent="." unique_id=1731018216]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=570508889]
+
+[node name="ShapeGizmo" type="Node2D" parent="." unique_id=1382734121]
 z_index = 4096
 script = ExtResource("1_37kl0")
 metadata/_custom_type_script = "uid://p2takc3yjuwu"
+
+[node name="ArcGizmo" type="Node2D" parent="." unique_id=862798247]
+script = ExtResource("3_6uqi0")
+metadata/_custom_type_script = "uid://c5m2o2xl1g62r"
+
+[node name="LineGizmo" type="Node2D" parent="." unique_id=167665512]
+script = ExtResource("4_ppyta")
+metadata/_custom_type_script = "uid://0tb2ql2hvthv"
