@@ -1,6 +1,6 @@
 @tool
 class_name LineGizmo
-extends Node2D
+extends GizmoIK
 
 
 @export var color: Color = Color.DARK_KHAKI:

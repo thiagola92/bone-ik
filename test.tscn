@@ -1,24 +1,31 @@
 [gd_scene format=3 uid="uid://b7t6njib28qx2"]
 
 [ext_resource type="Script" uid="uid://jtc0fwkwaaqk" path="res://test.gd" id="1_8uh7m"]
-[ext_resource type="Script" uid="uid://p2takc3yjuwu" path="res://addons/bone_ik/nodes/gizmos/shape_gizmo.gd" id="1_37kl0"]
-[ext_resource type="Script" uid="uid://c5m2o2xl1g62r" path="res://addons/bone_ik/nodes/gizmos/arc_gizmo.gd" id="3_6uqi0"]
-[ext_resource type="Script" uid="uid://0tb2ql2hvthv" path="res://addons/bone_ik/nodes/gizmos/line_gizmo.gd" id="4_ppyta"]
+[ext_resource type="Script" uid="uid://bu4w6f6846m" path="res://addons/bone_ik/nodes/core/bone_ik.gd" id="2_8uh7m"]
+[ext_resource type="Script" uid="uid://cxdbyrumt7hql" path="res://addons/bone_ik/nodes/modifiers/look_at_modifier.gd" id="3_6uqi0"]
 
 [node name="Test" type="Node2D" unique_id=376430662]
 script = ExtResource("1_8uh7m")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=570508889]
 
-[node name="ShapeGizmo" type="Node2D" parent="." unique_id=1382734121]
-z_index = 4096
-script = ExtResource("1_37kl0")
-metadata/_custom_type_script = "uid://p2takc3yjuwu"
+[node name="BoneIK" type="Node2D" parent="." unique_id=533609233]
+rotation = 0.7853982
+script = ExtResource("2_8uh7m")
+metadata/_custom_type_script = "uid://bu4w6f6846m"
 
-[node name="ArcGizmo" type="Node2D" parent="." unique_id=862798247]
+[node name="BoneIK" type="Node2D" parent="BoneIK" unique_id=1967550363]
+position = Vector2(47.258667, 22.79514)
+rotation = -1.1800424
+script = ExtResource("2_8uh7m")
+metadata/_custom_type_script = "uid://bu4w6f6846m"
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1184507121]
+position = Vector2(81, 26)
+
+[node name="LookAtModifier" type="Node2D" parent="." unique_id=543459785 node_paths=PackedStringArray("bone", "target")]
 script = ExtResource("3_6uqi0")
-metadata/_custom_type_script = "uid://c5m2o2xl1g62r"
-
-[node name="LineGizmo" type="Node2D" parent="." unique_id=167665512]
-script = ExtResource("4_ppyta")
-metadata/_custom_type_script = "uid://0tb2ql2hvthv"
+bone = NodePath("../BoneIK/BoneIK")
+target = NodePath("../Marker2D")
+enabled = false
+metadata/_custom_type_script = "uid://cxdbyrumt7hql"

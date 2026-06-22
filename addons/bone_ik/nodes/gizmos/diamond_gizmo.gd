@@ -1,6 +1,6 @@
 @tool
-class_name ShapeGizmo
-extends Node2D
+class_name DiamondGizmo
+extends GizmoIK
 
 
 @export var inner_color: Color = Color.WEB_GRAY:
